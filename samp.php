@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Avox Hosting</title>
+	<link rel="icon" href="assets/images/logo.png" type="image/png">
+
+	<!-- SEO -->
+	<meta property="og:site_name" content="">
+	<meta property="og:title" content="">
+	<meta name="twitter:card" content="summary">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="website">
+	<meta property="og:description" content="">
+	<meta name="description" content="">
+	<meta property="og:url" content="https://localhost/">
+	<meta property="og:image" content="">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="apple-touch-icon" sizes="180x180" href="index">
+	<link rel="icon" type="image/png" sizes="32x32" href="index">
+	<link rel="icon" type="image/png" sizes="16x16" href="index">
+	<link rel="manifest" href="index">
+	<link rel="mask-icon" href="index" color="#000000">
+	<link rel="shortcut icon" href="index">
+	<meta name="msapplication-TileColor" content="#000000">
+	<meta name="msapplication-config" content=""> 
+	<!-- End SEO -->
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@0ac23ca/css/all.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
+	<link href="assets/css/fonts.css" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/animations.css">
+</head>
+<body>
+	
+<!-- Navbar -->
+<nav id="navbar_top" class="navbar navbar-dark navbar-expand-lg fixed-top">
+	<div class="container-fluid container-custom">
+		<a class="navbar-brand d-flex align-items-center" href="index">
+			<img class="img-fluid me-2" src="assets/images/logo.png" alt="Avox Hosting Logo" style="height:40px;">
+			Avox <span style="color: #00aaff;">Hosting</span>
+		</a>
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dinoNavbar" aria-controls="dinoNavbar" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="dinoNavbar">
+			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+				<li class="nav-item">
+					<a class="nav-link" href="index">Home</a>
+				</li>
+
+				<!-- Game Hosting -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Game Hosting
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li>
+							<a class="dropdown-item" href="minecraft">
+								<img src="assets/images/steve.png" alt="Minecraft" style="width:24px; height:24px; vertical-align:middle; margin-right:8px;">
+								Minecraft
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="mta">
+								<img src="assets/images/mtasa.png" alt="MTA" style="width:24px; height:24px; vertical-align:middle; margin-right:8px;">
+								MTA
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="samp">
+								<img src="assets/images/samp.png" alt="SAMP" style="width:24px; height:24px; vertical-align:middle; margin-right:8px;">
+								SAMP
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<!-- Other Hosting -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Other Hosting
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li><a class="dropdown-item" href="vps-hosting">VPS Hosting</a></li>
+						<li><a class="dropdown-item" href="discord-hosting">Discord Hosting</a></li>
+					</ul>
+				</li>
+
+				<!-- Important -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Important
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li><a class="dropdown-item" href="partners">Partners</a></li>
+						<li><a class="dropdown-item" href="#">Contact</a></li>
+						<li><a class="dropdown-item" href="terms-of-service">Terms of Service</a></li>
+						<li><a class="dropdown-item" href="privacy-policy">Privacy Policy</a></li>
+					</ul>
+				</li>
+
+				<!-- Client Area Button -->
+				<li class="nav-item dropdown">
+					<a class="btn btn-primary dropdown-toggle ms-2" href="#" id="clientDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+						Client Area
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="clientDropdown">
+						<li>
+							<a class="dropdown-item" href="https://client.avoxhosting.site/index.php?rp=/login" target="_blank">
+								Login
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="https://client.avoxhosting.site/register" target="_blank">
+								Register
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="https://client.avoxhosting.site/" target="_blank">
+								Billing Area
+							</a>
+						</li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</nav>
+	<div class="header samp-h">
+		<div class="container-fluid container-custom">
+			<h2>SAMP Hosting</h2>
+			<p>Lorem ipsum dolor sit amet consectetur, adipisicing, elit.</p>
+		</div>
+	</div>
+
+	<div class="plans py-5">
+		<div class="container-fluid container-custom">
+			<div class="row">
+				<div class="col-lg-4 col-md-4">
+					<div class="card mb-4 text-center">
+						<div class="card-header py-4">
+							<h2 class="mb-0">SA-MP PLAN 1</h2>
+						</div>
+						<div class="card-price py-2">
+							Free Trial / <span>month</span>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled">
+								<li><i class="fad fa-users"></i> Max Players: 50</li>
+								<li><i class="fad fa-microchip"></i> CPU Usage: Up to 25%</li>
+								<li><i class="fad fa-memory"></i> RAM Usage: 512 MB</li>
+								<li><i class="fad fa-hdd"></i> Storage Usage: 500 MB NVMe</li>
+								<li><i class="fad fa-shield-alt"></i> Anti-DDoS Protection Included</li>
+							</ul>
+							<div class="mt-4">
+								<a href="https://client.avoxhosting.site/index.php?rp=/store/san-andreas-multiplayer/plan1" class="btn">Order now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<div class="card mb-4 text-center">
+						<div class="card-header py-4">
+							<h2 class="mb-0">SA-MP PLAN 2</h2>
+						</div>
+						<div class="card-price py-2">
+							&dollar;1.50 / <span>month</span>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled">
+								<li><i class="fad fa-users"></i> Max Players: 150</li>
+								<li><i class="fad fa-microchip"></i> CPU Usage: Up to 50%</li>
+								<li><i class="fad fa-memory"></i> RAM Usage: 1 GB</li>
+								<li><i class="fad fa-hdd"></i> Storage Usage: 2 GB NVMe</li>
+								<li><i class="fad fa-shield-alt"></i> Anti-DDoS Protection Included</li>
+							</ul>
+							<div class="mt-4">
+								<a href="https://client.avoxhosting.site/index.php?rp=/store/san-andreas-multiplayer/plan2" class="btn">Order now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<div class="card mb-4 text-center">
+						<div class="card-header py-4">
+							<h2 class="mb-0">SA-MP PLAN 3</h2>
+						</div>
+						<div class="card-price py-2">
+							&dollar;3.50 / <span>month</span>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled">
+								<li><i class="fad fa-users"></i> Max Players: 250</li>
+								<li><i class="fad fa-microchip"></i> CPU Usage: Up to 100%</li>
+								<li><i class="fad fa-memory"></i> RAM Usage: 3 GB</li>
+								<li><i class="fad fa-hdd"></i> Storage Usage: 3 GB NVMe</li>
+								<li><i class="fad fa-shield-alt"></i> Anti-DDoS Protection Included</li>
+							</ul>
+							<div class="mt-4">
+								<a href="https://client.avoxhosting.site/index.php?rp=/store/san-andreas-multiplayer/plan3" class="btn">Order now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<div class="card mb-4 text-center">
+						<div class="card-header py-4">
+							<h2 class="mb-0">SA-MP PLAN 4</h2>
+						</div>
+						<div class="card-price py-2">
+							&dollar;5.00 / <span>month</span>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled">
+								<li><i class="fad fa-users"></i> Max Players: 500</li>
+								<li><i class="fad fa-microchip"></i> CPU Usage: Up to 250%</li>
+								<li><i class="fad fa-memory"></i> RAM Usage: 6 GB</li>
+								<li><i class="fad fa-hdd"></i> Storage Usage: 4 GB NVMe</li>
+								<li><i class="fad fa-shield-alt"></i> Anti-DDoS Protection Included</li>
+							</ul>
+							<div class="mt-4">
+								<a href="https://client.avoxhosting.site/index.php?rp=/store/san-andreas-multiplayer/plan4" class="btn">Order now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<div class="card mb-4 text-center">
+						<div class="card-header py-4">
+							<h2 class="mb-0">SA-MP PLAN 5</h2>
+						</div>
+						<div class="card-price py-2">
+							&dollar;7.50 / <span>month</span>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled">
+								<li><i class="fad fa-users"></i> Max Players: 750</li>
+								<li><i class="fad fa-microchip"></i> CPU Usage: Up to 300%</li>
+								<li><i class="fad fa-memory"></i> RAM Usage: 8 GB</li>
+								<li><i class="fad fa-hdd"></i> Storage Usage: 5 GB NVMe</li>
+								<li><i class="fad fa-shield-alt"></i> Anti-DDoS Protection Included</li>
+							</ul>
+							<div class="mt-4">
+								<a href="https://client.avoxhosting.site/index.php?rp=/store/san-andreas-multiplayer/plan5" class="btn">Order now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<div class="card mb-4 text-center">
+						<div class="card-header py-4">
+							<h2 class="mb-0">SA-MP PLAN 6</h2>
+						</div>
+						<div class="card-price py-2">
+							&dollar;10.00 / <span>month</span>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled">
+								<li><i class="fad fa-users"></i> Max Players: 1000</li>
+								<li><i class="fad fa-microchip"></i> CPU Usage: Up to 500%</li>
+								<li><i class="fad fa-memory"></i> RAM Usage: 12 GB</li>
+								<li><i class="fad fa-hdd"></i> Storage Usage: 6 GB NVMe</li>
+								<li><i class="fad fa-shield-alt"></i> Anti-DDoS Protection Included</li>
+							</ul>
+							<div class="mt-4">
+								<a href="https://client.avoxhosting.site/index.php?rp=/store/san-andreas-multiplayer/plan6" class="btn">Order now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Panel -->
+	<div class="panel py-5">
+		<div class="container-fluid container-custom">
+			<div class="row d-flex justify-content-between">
+				<div class="col-md-5 d-flex align-items-center">
+					<img src="assets/images/panel.webp" class="img-fluid" alt="Game Panel">
+				</div>
+				<div class="col-md-7">
+					<div class="panel_content">
+						<h2>Powerful Controlpanel</h2>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut vero molestias explicabo, id maxime laboriosam, ab, rem, debitis est voluptatibus facilis? Hic aperiam dolorum ab tempora corrupti, beatae architecto voluptatem!</p>
+						<ul>
+							<li><i class="fas fa-check-circle"></i> Easy To Use</li>
+							<li><i class="fas fa-check-circle"></i> Fast And Secured big anti ddos </li>
+							<li><i class="fas fa-check-circle"></i> Pre installed Plugins and auto setup</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- DDoS -->
+	<div class="ddos py-5">
+		<div class="container-fluid container-custom">
+			<div class="row d-flex justify-content-between">
+				<div class="col-lg-6">
+					<svg class="img-fluid" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" id="Layer_1" width="400" height="400" x="0" y="0" class="svg" version="1.1" viewBox="0 0 496.8 498">
+						<path fill="none" stroke="#2f334b" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M490.9 248.5c0 133.9-108.6 242.5-242.5 242.5S5.9 382.4 5.9 248.5C5.9 114.5 114.5 6 248.4 6s242.5 108.5 242.5 242.5z"/>
+						<path d="M248.4 19.7v457.5m-228.8-229h457.6M76.5 419.9 410 86.5m-323.3.1 323.5 323.6" class="ddosa1"/>
+						<path d="M433.7 248.5c0 102.4-83 185.3-185.3 185.3-102.4 0-185.3-83-185.3-185.3 0-102.4 83-185.3 185.3-185.3 102.4-.1 185.3 82.9 185.3 185.3z" class="ddosa2"/>
+						<path d="M477.2 248.5c0 126.4-102.4 228.8-228.8 228.8C122 477.2 19.6 374.8 19.6 248.5 19.6 122.1 122 19.7 248.4 19.7s228.8 102.4 228.8 228.8z" class="ddosa2"/>
+						<path d="M372.4 248.5c0 68.5-55.5 124-124 124s-124-55.5-124-124 55.5-124 124-124 124 55.5 124 124z" class="ddosa2"/>
+						<path d="M315.3 248.5c0 36.9-29.9 66.9-66.9 66.9-36.9 0-66.9-29.9-66.9-66.9 0-36.9 29.9-66.9 66.9-66.9 36.9 0 66.9 29.9 66.9 66.9z" class="ddosa2"/>
+						<path d="M249 63.1v18.3m37.8-14.1L283 85.1m40.5-5.8L316.2 96m40.7 2.7-10.6 14.7m39.3 11.1-13.5 12.2m36.2 19-15.7 9.1M424 191l-17.2 5.7m25.2 32-18 2m18 36.5-16.6-1.7m8.6 39.9-17.1-5.6m1.4 40.7-15.5-8.9m-7.3 40.2-13.2-11.9m-15.5 37.7-10.3-14.3m-23.1 33.6-7.1-16m-29.5 27.9-3.6-17.1M64.4 228.8l17.5 1.7m-9.4-39.9 16.8 5.5m-1.1-40.7 15.4 9m7.4-40.3 13.3 12.1m15.3-37.9 10.6 14.7M173 79l7.4 16.7m29.3-28.3 3.8 17.6M248 432.9v-17.4m-38.1 13.1 3.5-16.7m-40.3 4.8 6.9-15.6m-40.3-3.8 10-13.8m-38.6-12 12.6-11.4m-35.3-19.8 14.7-8.6M72.6 305l16.3-5.4m-24.3-32.3 17.2-1.9" class="ddosa1"/>
+						<path id="svg-concept" d="M437.8 256.6c0 2.3-1.8 4.1-4.1 4.1s-4.1-1.8-4.1-4.1 1.8-4.1 4.1-4.1 4.1 1.9 4.1 4.1zM293.7 132c0 2.3-1.8 4.1-4.1 4.1s-4.1-1.8-4.1-4.1 1.8-4.1 4.1-4.1 4.1 1.8 4.1 4.1zm-68.5 177.4c0 2.3-1.8 4.1-4.1 4.1s-4.1-1.8-4.1-4.1 1.8-4.1 4.1-4.1c2.2.1 4.1 1.9 4.1 4.1zm73.2 54.2c0 2.3-1.8 4.1-4.1 4.1s-4.1-1.8-4.1-4.1 1.8-4.1 4.1-4.1c2.2 0 4.1 1.8 4.1 4.1zM73.5 201.9c0 2.3-1.8 4.1-4.1 4.1s-4.1-1.8-4.1-4.1 1.8-4.1 4.1-4.1c2.3.1 4.1 1.9 4.1 4.1z" class="ddosa3"/><g>
+							<path fill="none" stroke="#0195f4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="3" d="M248.4 6C316 6 372 32.9 419.5 77L248.4 248.4V6z"/>
+							<animateTransform attributeName="transform" dur="6s" from="0 248 249" repeatCount="indefinite" to="360 248 249" type="rotate"/>
+						</g>
+						<path d="M258.9 248.2c0 5.8-4.7 10.5-10.5 10.5s-10.5-4.7-10.5-10.5 4.7-10.5 10.5-10.5 10.5 4.7 10.5 10.5z" class="ddosa3"/><path d="M252.3 248.2c0 2.2-1.7 3.9-3.9 3.9s-3.9-1.8-3.9-3.9 1.7-3.9 3.9-3.9 3.9 1.7 3.9 3.9zm6.6 0h-6.6m-7.8 0h-6.6" style="fill:none;stroke:#0195f4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"/>
+					</svg>
+				</div>
+				<div class="col-lg-6 d-flex align-items-center">
+					<div class="ddos_content">
+						<h2><strong>Anti-DDoS Protection</strong></h2>
+						<p>Our premium dedicated game servers come with robust, always-on 1.2Tbps DDoS protection designed specifically for multiplayer games like MTA, SAMP, Minecraft, and many more. Enjoy uninterrupted gameplay with industry-leading security that keeps your server safe from attacks and downtime.</p>
+						<p>Experience reliable performance, low latency, and maximum uptime so you can focus on what matters — playing and growing your community.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- Simplified Modern Footer -->
+<footer class="footer-section text-white py-5" style="background-color: #1E1E2F;">
+	<style>
+	  .footer-heading {
+		font-weight: 600;
+		margin-bottom: 12px;
+		border-bottom: 2px solid #1f8cff;
+		display: inline-block;
+		padding-bottom: 4px;
+	  }
+  
+	  .footer-links li {
+		margin-bottom: 8px;
+	  }
+  
+	  .footer-links a {
+		color: #ccc;
+		text-decoration: none;
+		transition: 0.3s ease;
+	  }
+  
+	  .footer-links a:hover {
+		color: #1f8cff;
+		text-decoration: underline;
+	  }
+  
+	  footer p {
+		color: #bbb;
+	  }
+	</style>
+  
+	<div class="container-fluid container-custom">
+	  <div class="row">
+  
+		<!-- Brand + Info -->
+		<div class="col-md-3 mb-4">
+		  <div class="d-flex align-items-center mb-3">
+			<img src="assets/images/logo.png" alt="Avox Hosting Logo" style="height: 40px;" class="me-2">
+			<h4 class="m-0">Avox <span style="color: #1f8cff;">Hosting</span></h4>
+		  </div>
+		  <p class="small text-muted">Premium game server hosting with 24/7 support and 99.9% uptime guarantee.</p>
+		</div>
+  
+		<!-- Services -->
+		<div class="col-md-3 mb-4">
+		  <h6 class="footer-heading">Services</h6>
+		  <ul class="list-unstyled footer-links">
+			<li><a href="minecraft">Minecraft</a></li>
+			<li><a href="mta">MTA</a></li>
+			<li><a href="samp">SAMP</a></li>
+		  </ul>
+		</div>
+  
+		<!-- Support -->
+		<div class="col-md-3 mb-4">
+		  <h6 class="footer-heading">Support</h6>
+		  <ul class="list-unstyled footer-links">
+			<li><a href="index">Contact Us</a></li>
+			<li><a href="index">Discord</a></li>
+		  </ul>
+		</div>
+  
+		<!-- Company -->
+		<div class="col-md-3 mb-4">
+		  <h6 class="footer-heading">Company</h6>
+		  <ul class="list-unstyled footer-links">
+			<li><a href="partners">Partners</a></li>
+			<li><a href="terms-of-service">Terms of Service</a></li>
+			<li><a href="privacy-policy">Privacy Policy</a></li>
+		  </ul>
+		</div>
+  
+	  </div>
+  
+	  <hr class="text-secondary">
+  
+	  <!-- Bottom -->
+	  <div class="text-center small text-muted mt-3" style="color: #bbb;">
+		&copy; 2025 Avox Hosting. All rights reserved.
+	  </div>
+	</div>
+  </footer>
+	<!-- Jquery v3.6.1 -->
+	<script src="assets/js/jquery.min.js"></script>
+	<!-- Bootstrap v5.2.1 -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<!-- Custom JS -->
+	<script src="assets/js/custom.js"></script>
+	<script src="assets/js/owl.carousel.min.js"></script>
+	<!-- Custom JS -->
+	<script>
+		jQuery("#reviews").owlCarousel({autoplay:!0,rewind:!0,margin:20,mouseDrag:!0,nav:!1,dots:!1,lazyLoad:!0,responsive:{0:{items:1},576:{items:2},768:{items:2},1024:{items:2},1366:{items:2}}});
+	</script>
+			<script src="assets/js/custom.js"></script>
+		
+		<!-- Start Crisp Chat -->
+		<script type="text/javascript">
+		window.$crisp = [];
+		window.CRISP_WEBSITE_ID = "9f59b67a-7d61-4c2a-9329-ff489d39bc2d";
+		(function () {
+		  d = document;
+		  s = d.createElement("script");
+		  s.src = "https://client.crisp.chat/l.js";
+		  s.async = 1;
+		  d.getElementsByTagName("head")[0].appendChild(s);
+		})();
+		</script>
+		<!-- End Crisp Chat -->
+		
+		<!-- NoScript Protection -->
+		<noscript>
+			<style>
+				body { display: none !important; }
+			</style>
+			<div style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;z-index:999999;">
+				<div style="text-align:center;padding:20px;">
+					<h1>JavaScript Required</h1>
+					<p>This website requires JavaScript to function properly.</p>
+					<p>Please enable JavaScript in your browser settings.</p>
+				</div>
+			</div>
+		</noscript>
+	</body>
+	</html>
