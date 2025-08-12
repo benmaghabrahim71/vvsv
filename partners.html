@@ -4,28 +4,28 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Avox Hosting</title>
+	<title>Avox Hosting - Partners</title>
 	<link rel="icon" href="assets/images/logo.png" type="image/png">
 
 	<!-- SEO -->
-	<meta property="og:site_name" content="">
-	<meta property="og:title" content="">
+	<meta property="og:site_name" content="Avox Hosting">
+	<meta property="og:title" content="Avox Hosting - Premium Game Server Hosting">
 	<meta name="twitter:card" content="summary">
 	<meta property="og:locale" content="en">
 	<meta property="og:type" content="website">
-	<meta property="og:description" content="">
-	<meta name="description" content="">
-	<meta property="og:url" content="https://localhost/">
-	<meta property="og:image" content="">
+	<meta property="og:description" content="Premium game server hosting with 24/7 support and 99.9% uptime guarantee.">
+	<meta name="description" content="Premium game server hosting with 24/7 support and 99.9% uptime guarantee.">
+	<meta property="og:url" content="https://avoxhosting.site/partners">
+	<meta property="og:image" content="assets/images/logo.png">
 	<meta name="twitter:card" content="summary_large_image">
-	<link rel="apple-touch-icon" sizes="180x180" href="index">
-	<link rel="icon" type="image/png" sizes="32x32" href="index">
-	<link rel="icon" type="image/png" sizes="16x16" href="index">
-	<link rel="manifest" href="index">
-	<link rel="mask-icon" href="index" color="#000000">
-	<link rel="shortcut icon" href="index">
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png">
+	<link rel="manifest" href="site.webmanifest">
+	<link rel="mask-icon" href="assets/images/logo.png" color="#000000">
+	<link rel="shortcut icon" href="assets/images/logo.png">
 	<meta name="msapplication-TileColor" content="#000000">
-	<meta name="msapplication-config" content=""> 
+	<meta name="msapplication-config" content="browserconfig.xml"> 
 	<!-- End SEO -->
 
 	<!-- CSS -->
@@ -38,21 +38,33 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/animations.css">
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+	<!-- AOS Animation -->
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<style>
 		/* Improved styling */
 		:root {
 			--primary-color: #00aaff;
 			--secondary-color: #1E1E2F;
 			--accent-color: #6c5ce7;
+			--text-color: #333;
+			--light-bg: #f8f9fa;
+		}
+		
+		body {
+			font-family: 'Poppins', sans-serif;
+			color: var(--text-color);
+			background-color: #fff;
+			overflow-x: hidden;
 		}
 		
 		.header.partners-h {
 			background: linear-gradient(135deg, var(--secondary-color) 0%, #2d3436 100%);
-			padding: 120px 0 80px;
+			padding: 150px 0 100px;
 			color: white;
 			text-align: center;
 			position: relative;
 			overflow: hidden;
+			margin-bottom: 50px;
 		}
 		
 		.header.partners-h::before {
@@ -63,74 +75,100 @@
 			width: 100%;
 			height: 100%;
 			background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
-			opacity: 0.2;
+			opacity: 0.15;
 			z-index: 0;
 		}
 		
+		.header.partners-h .container-custom {
+			position: relative;
+			z-index: 1;
+		}
+		
 		.header.partners-h h2 {
-			font-size: 3rem;
-			font-weight: 700;
-			margin-bottom: 1rem;
+			font-size: 3.5rem;
+			font-weight: 800;
+			margin-bottom: 1.5rem;
 			position: relative;
 			text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 		}
 		
 		.header.partners-h p {
-			font-size: 1.2rem;
+			font-size: 1.3rem;
 			max-width: 700px;
 			margin: 0 auto;
 			position: relative;
 			opacity: 0.9;
+			font-weight: 300;
 		}
 		
 		.partners {
-			background-color: #f8f9fa;
-			padding: 80px 0;
+			background-color: var(--light-bg);
+			padding: 100px 0;
 		}
 		
 		.partners .card {
 			border: none;
 			border-radius: 15px;
 			overflow: hidden;
-			box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-			transition: all 0.3s ease;
+			box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+			transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 			background: white;
 			margin: 20px auto;
 			max-width: 350px;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
 		}
 		
 		.partners .card:hover {
-			transform: translateY(-10px);
-			box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+			transform: translateY(-10px) scale(1.02);
+			box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+		}
+		
+		.partner-img-container {
+			padding: 30px 30px 0;
+			background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+			text-align: center;
 		}
 		
 		.partner-img {
 			width: 150px;
 			height: 150px;
 			object-fit: contain;
-			margin: 30px auto 0;
 			border-radius: 50%;
 			border: 5px solid white;
-			box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+			box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+			background: white;
+			padding: 5px;
 		}
 		
 		.partners .card-body {
 			padding: 30px;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
 		}
 		
 		.partners h3 {
 			font-weight: 700;
 			color: var(--secondary-color);
+			margin-bottom: 15px;
 		}
 		
-		.partners ul {
+		.partners .partner-description {
+			color: #666;
+			margin-bottom: 20px;
+			flex-grow: 1;
+		}
+		
+		.partners .social-links {
 			display: flex;
 			justify-content: center;
 			gap: 15px;
-			margin-top: 20px;
+			margin-top: auto;
 		}
 		
-		.partners ul li a {
+		.partners .social-links a {
 			color: white;
 			background: var(--primary-color);
 			width: 40px;
@@ -140,24 +178,13 @@
 			align-items: center;
 			justify-content: center;
 			transition: all 0.3s ease;
+			text-decoration: none;
 		}
 		
-		.partners ul li a:hover {
+		.partners .social-links a:hover {
 			background: var(--accent-color);
-			transform: scale(1.1);
-		}
-		
-		/* Animation classes */
-		.animate-delay-1 {
-			animation-delay: 0.2s;
-		}
-		
-		.animate-delay-2 {
-			animation-delay: 0.4s;
-		}
-		
-		.animate-delay-3 {
-			animation-delay: 0.6s;
+			transform: translateY(-3px) scale(1.1);
+			box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
 		}
 		
 		/* Section title */
@@ -168,11 +195,12 @@
 		}
 		
 		.section-title h2 {
-			font-weight: 700;
+			font-weight: 800;
 			color: var(--secondary-color);
 			position: relative;
 			display: inline-block;
 			padding-bottom: 15px;
+			font-size: 2.5rem;
 		}
 		
 		.section-title h2::after {
@@ -182,8 +210,9 @@
 			left: 50%;
 			transform: translateX(-50%);
 			width: 80px;
-			height: 3px;
+			height: 4px;
 			background: var(--primary-color);
+			border-radius: 2px;
 		}
 		
 		/* Floating animation */
@@ -196,16 +225,46 @@
 		.floating {
 			animation: float 3s ease-in-out infinite;
 		}
+		
+		/* Pulse animation for CTA */
+		@keyframes pulse {
+			0% { transform: scale(1); }
+			50% { transform: scale(1.05); }
+			100% { transform: scale(1); }
+		}
+		
+		.pulse {
+			animation: pulse 2s infinite;
+		}
+		
+		/* Responsive adjustments */
+		@media (max-width: 768px) {
+			.header.partners-h {
+				padding: 120px 0 80px;
+			}
+			
+			.header.partners-h h2 {
+				font-size: 2.5rem;
+			}
+			
+			.header.partners-h p {
+				font-size: 1.1rem;
+			}
+			
+			.section-title h2 {
+				font-size: 2rem;
+			}
+		}
 	</style>
 </head>
 <body>
 	
 <!-- Navbar -->
-<nav id="navbar_top" class="navbar navbar-dark navbar-expand-lg fixed-top">
+<nav id="navbar_top" class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(30, 30, 47, 0.95); backdrop-filter: blur(10px);">
 	<div class="container-fluid container-custom">
 		<a class="navbar-brand d-flex align-items-center" href="index">
 			<img class="img-fluid me-2 floating" src="assets/images/logo.png" alt="Avox Hosting Logo" style="height:40px;">
-			Avox <span style="color: #00aaff;">Hosting</span>
+			<span class="fw-bold">Avox</span><span style="color: #00aaff;" class="fw-bold">Hosting</span>
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dinoNavbar" aria-controls="dinoNavbar" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -260,7 +319,7 @@
 						Important
 					</a>
 					<ul class="dropdown-menu dropdown-menu-end">
-						<li><a class="dropdown-item" href="partners">Partners</a></li>
+						<li><a class="dropdown-item active" href="partners">Partners</a></li>
 						<li><a class="dropdown-item" href="#">Contact</a></li>
 						<li><a class="dropdown-item" href="terms-of-service">Terms of Service</a></li>
 						<li><a class="dropdown-item" href="privacy-policy">Privacy Policy</a></li>
@@ -269,7 +328,7 @@
 
 				<!-- Client Area Button -->
 				<li class="nav-item dropdown">
-					<a class="btn btn-primary dropdown-toggle ms-2" href="#" id="clientDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+					<a class="btn btn-primary dropdown-toggle ms-2 pulse" href="#" id="clientDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--primary-color); border: none;">
 						Client Area
 					</a>
 					<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="clientDropdown">
@@ -297,64 +356,46 @@
 
 	<div class="header partners-h">
 		<div class="container-fluid container-custom">
-			<h2 class="animate__animated animate__fadeInDown">Partner Program</h2>
-			<p class="animate__animated animate__fadeIn animate__delay-1s">We collaborate with industry leaders to bring you the best hosting experience</p>
+			<h2 class="animate__animated animate__fadeInDown" data-aos="fade-down">Partner Program</h2>
+			<p class="animate__animated animate__fadeIn animate__delay-1s" data-aos="fade-up" data-aos-delay="200">We collaborate with industry leaders to bring you the best hosting experience</p>
 		</div>
 	</div>
 
 	<!-- Partners -->
 	<div class="partners py-5">
 		<div class="container-fluid container-custom">
-			<div class="section-title animate__animated animate__fadeIn">
+			<div class="section-title" data-aos="fade-up">
 				<h2>Our Partners</h2>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-lg-4 col-md-6 animate__animated animate__fadeInUp">
+				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
 					<div class="card text-center">
-						<img src="https://cdn.discordapp.com/attachments/1392475843707666504/1404836341962768414/file_000000002a8861f788192c40750898a5_2.png?ex=689ca34c&is=689b51cc&hm=094d2d7ff080e0888150968028a12fbbb4955adbdb7ddb3257dda54962b71203&" class="partner-img rounded" alt="Toxic Hosting Logo">
+						<div class="partner-img-container">
+							<img src="https://cdn.discordapp.com/attachments/1392475843707666504/1404836341962768414/file_000000002a8861f788192c40750898a5_2.png" class="partner-img" alt="Toxic Hosting Logo" onerror="this.src='https://via.placeholder.com/150x150?text=Toxic+Hosting'">
+						</div>
 						<div class="card-body">
-							<h3 class="py-3">Toxic Hosting</h3>
-							<ul class="list-unstyled">
-								<li><a href="https://discord.gg/QsxFbTar" target="_blank"><i class="fab fa-discord"></i></a></li>
-							</ul>
+							<h3>Toxic Hosting</h3>
+							<p class="partner-description">Premium hosting solutions with exceptional performance and reliability.</p>
+							<div class="social-links">
+								<a href="https://discord.gg/QsxFbTar" target="_blank" title="Discord" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fab fa-discord"></i></a>
+							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			
+			<!-- Partner CTA -->
+			<div class="row mt-5">
+				<div class="col-12 text-center" data-aos="fade-up" data-aos-delay="500">
+					<h3 class="mb-4">Want to become a partner?</h3>
+					<a href="#" class="btn btn-primary btn-lg pulse" style="background: var(--primary-color); border: none; padding: 12px 30px; font-weight: 600;">Contact Us</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
 <!-- Simplified Modern Footer -->
-<footer class="footer-section text-white py-5" style="background-color: #1E1E2F;">
-	<style>
-	  .footer-heading {
-		font-weight: 600;
-		margin-bottom: 12px;
-		border-bottom: 2px solid #1f8cff;
-		display: inline-block;
-		padding-bottom: 4px;
-	  }
-  
-	  .footer-links li {
-		margin-bottom: 8px;
-	  }
-  
-	  .footer-links a {
-		color: #ccc;
-		text-decoration: none;
-		transition: 0.3s ease;
-	  }
-  
-	  .footer-links a:hover {
-		color: #1f8cff;
-		text-decoration: underline;
-	  }
-  
-	  footer p {
-		color: #bbb;
-	  }
-	</style>
-  
+<footer class="footer-section text-white py-5" style="background-color: var(--secondary-color);">
 	<div class="container-fluid container-custom">
 	  <div class="row">
   
@@ -362,18 +403,25 @@
 		<div class="col-md-3 mb-4">
 		  <div class="d-flex align-items-center mb-3">
 			<img src="assets/images/logo.png" alt="Avox Hosting Logo" style="height: 40px;" class="me-2">
-			<h4 class="m-0">Avox <span style="color: #1f8cff;">Hosting</span></h4>
+			<h4 class="m-0">Avox <span style="color: var(--primary-color);">Hosting</span></h4>
 		  </div>
-		  <p class="small text-muted">Premium game server hosting with 24/7 support and 99.9% uptime guarantee.</p>
+		  <p class="small" style="color: #bbb;">Premium game server hosting with 24/7 support and 99.9% uptime guarantee.</p>
+		  <div class="social-icons mt-3">
+			<a href="#" class="text-white me-2"><i class="fab fa-discord fa-lg"></i></a>
+			<a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+			<a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+		  </div>
 		</div>
   
 		<!-- Services -->
 		<div class="col-md-3 mb-4">
 		  <h6 class="footer-heading">Services</h6>
 		  <ul class="list-unstyled footer-links">
-			<li><a href="minecraft">Minecraft</a></li>
-			<li><a href="mta">MTA</a></li>
-			<li><a href="samp">SAMP</a></li>
+			<li><a href="minecraft">Minecraft Hosting</a></li>
+			<li><a href="mta">MTA Hosting</a></li>
+			<li><a href="samp">SAMP Hosting</a></li>
+			<li><a href="vps-hosting">VPS Hosting</a></li>
+			<li><a href="discord-hosting">Discord Bots</a></li>
 		  </ul>
 		</div>
   
@@ -381,8 +429,10 @@
 		<div class="col-md-3 mb-4">
 		  <h6 class="footer-heading">Support</h6>
 		  <ul class="list-unstyled footer-links">
-			<li><a href="index">Contact Us</a></li>
-			<li><a href="index">Discord</a></li>
+			<li><a href="#">Contact Us</a></li>
+			<li><a href="#">Knowledgebase</a></li>
+			<li><a href="#">Status</a></li>
+			<li><a href="#">FAQ</a></li>
 		  </ul>
 		</div>
   
@@ -391,6 +441,7 @@
 		  <h6 class="footer-heading">Company</h6>
 		  <ul class="list-unstyled footer-links">
 			<li><a href="partners">Partners</a></li>
+			<li><a href="#">About Us</a></li>
 			<li><a href="terms-of-service">Terms of Service</a></li>
 			<li><a href="privacy-policy">Privacy Policy</a></li>
 		  </ul>
@@ -398,10 +449,10 @@
   
 	  </div>
   
-	  <hr class="text-secondary">
+	  <hr style="border-color: rgba(255,255,255,0.1);">
   
 	  <!-- Bottom -->
-	  <div class="text-center small text-muted mt-3" style="color: #bbb;">
+	  <div class="text-center small mt-3" style="color: #bbb;">
 		&copy; 2025 Avox Hosting. All rights reserved.
 	  </div>
 	</div>
@@ -411,30 +462,42 @@
 	<!-- Bootstrap v5.2.1 -->
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
+	<!-- AOS Animation -->
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<!-- Custom JS -->
 	<script src="assets/js/custom.js"></script>
 	<script src="assets/js/owl.carousel.min.js"></script>
 	<!-- Custom JS -->
 	<script>
-		jQuery("#reviews").owlCarousel({autoplay:!0,rewind:!0,margin:20,mouseDrag:!0,nav:!1,dots:!1,lazyLoad:!0,responsive:{0:{items:1},576:{items:2},768:{items:2},1024:{items:2},1366:{items:2}}});
+		// Initialize AOS animation
+		AOS.init({
+			duration: 800,
+			easing: 'ease-in-out',
+			once: true
+		});
 		
-		// Animation on scroll
-		$(document).ready(function() {
-			// Add animation classes when elements come into view
-			$(window).scroll(function() {
-				$('.animate-on-scroll').each(function() {
-					var position = $(this).offset().top;
-					var scroll = $(window).scrollTop();
-					var windowHeight = $(window).height();
-					
-					if (scroll + windowHeight > position) {
-						$(this).addClass('animate__animated animate__fadeInUp');
-					}
+		// Initialize tooltips
+		$(function () {
+			$('[data-bs-toggle="tooltip"]').tooltip()
+		});
+		
+		// Smooth scroll for anchor links
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
+				document.querySelector(this.getAttribute('href')).scrollIntoView({
+					behavior: 'smooth'
 				});
 			});
-			
-			// Trigger scroll event on page load
-			$(window).scroll();
+		});
+		
+		// Navbar scroll effect
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 100) {
+				$('#navbar_top').addClass('navbar-scrolled');
+			} else {
+				$('#navbar_top').removeClass('navbar-scrolled');
+			}
 		});
 	</script>
 		
