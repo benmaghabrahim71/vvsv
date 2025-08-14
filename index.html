@@ -22,11 +22,14 @@
     --primary: #0066FF;
     --primary-light: #1E90FF;
     --primary-dark: #004ACC;
+    --primary-transparent: rgba(0, 102, 255, 0.1);
     --black: #0A0A0A;
     --gray-dark: #1E1E1E;
     --gray-light: #2D2D2D;
     --text-light: #E0E0E0;
     --white: #FFFFFF;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -35,14 +38,15 @@ body {
     color: var(--white);
     overflow-x: hidden;
     line-height: 1.6;
+    scroll-behavior: smooth;
 }
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif;
     letter-spacing: -0.5px;
 }
 header {
-    background-color: rgba(10,10,10,0.9);
-    padding: 20px 5%;
+    background-color: rgba(10,10,10,0.95);
+    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -51,7 +55,12 @@ header {
     top: 0;
     z-index: 1000;
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0,102,255,0.2);
+    border-bottom: 1px solid rgba(0,102,255,0.3);
+    transition: var(--transition);
+}
+header.scrolled {
+    padding: 10px 5%;
+    box-shadow: var(--shadow);
 }
 .logo {
     font-size: 1.8rem;
@@ -59,7 +68,7 @@ header {
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: var(--transition);
 }
 .logo span { color: var(--primary); margin-left: 5px; }
 .logo i { margin-right: 10px; color: var(--primary); }
@@ -76,7 +85,8 @@ nav a {
     font-weight: 500;
     font-size: 1rem;
     position: relative;
-    transition: color 0.3s ease;
+    transition: var(--transition);
+    padding: 8px 0;
 }
 nav a i { margin-right: 5px; color: var(--primary-light); }
 nav a:hover { color: var(--primary); }
@@ -86,8 +96,8 @@ nav a::after {
     width: 0;
     height: 2px;
     background: var(--primary);
-    bottom: -5px; left: 0;
-    transition: width 0.3s ease;
+    bottom: 0; left: 0;
+    transition: var(--transition);
 }
 nav a:hover::after { width: 100%; }
 .cta {
@@ -101,32 +111,70 @@ nav a:hover::after { width: 100%; }
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
 }
 .cta:hover {
     background: var(--primary-dark);
-    transform: scale(1.05) rotate(1deg);
-    box-shadow: 0 5px 15px rgba(0,102,255,0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,102,255,0.4);
 }
 
 /* HERO */
 .hero {
     text-align: center;
-    padding: 180px 10% 100px;
-    background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(30,30,30,0.8) 100%), 
+    padding: 200px 10% 120px;
+    background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(30,30,30,0.85) 100%), 
                 url('https://www.swktech.com/wp-content/uploads/2023/09/iaas-servers-banner.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     position: relative;
     color: white;
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(0,102,255,0.2) 0%, transparent 50%);
+    z-index: 0;
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
 }
 .hero h1 {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 800;
     margin-bottom: 20px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    min-height: 120px;
+    line-height: 1.2;
 }
-.hero h1 span { color: var(--primary); }
+.hero h1 span { 
+    color: var(--primary);
+    position: relative;
+}
+.hero h1 span::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+}
+.hero h1:hover span::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
 .hero p {
     color: var(--text-light);
     font-size: 1.25rem;
@@ -139,6 +187,7 @@ nav a:hover::after { width: 100%; }
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
+    margin-top: 40px;
 }
 .hero-btn {
     background: var(--primary);
@@ -149,26 +198,101 @@ nav a:hover::after { width: 100%; }
     font-size: 1.1rem;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.hero-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--primary-dark), var(--primary-light));
+    z-index: -1;
+    opacity: 0;
+    transition: var(--transition);
+}
+.hero-btn:hover::before {
+    opacity: 1;
 }
 .hero-btn i { margin-right: 8px; }
 .hero-btn:hover {
-    background: var(--primary-dark);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(0,102,255,0.4);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,102,255,0.5);
 }
 .hero-btn.secondary {
     background: transparent;
     border: 2px solid var(--primary);
+    box-shadow: none;
 }
 .hero-btn.secondary:hover {
-    background: rgba(0,102,255,0.1);
+    background: var(--primary-transparent);
+}
+
+/* FEATURES */
+.features {
+    padding: 100px 5%;
+    background-color: var(--black);
+}
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+.feature-card {
+    background: var(--gray-dark);
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-transparent);
+}
+.feature-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+.feature-card:hover .feature-icon {
+    transform: scale(1.2);
+}
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+.feature-card p {
+    color: var(--text-light);
 }
 
 /* PLANS */
 .plans {
     padding: 100px 5%;
     background-color: var(--black);
+    position: relative;
+}
+.plans::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 80% 20%, rgba(0,102,255,0.1) 0%, transparent 50%);
+    z-index: 0;
+}
+.plans-content {
+    position: relative;
+    z-index: 1;
 }
 .section-header {
     text-align: center;
@@ -177,6 +301,23 @@ nav a:hover::after { width: 100%; }
 .section-header h2 {
     font-size: clamp(2rem, 4vw, 2.8rem);
     font-weight: 800;
+    position: relative;
+    display: inline-block;
+}
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--primary);
+}
+.section-header p {
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 20px auto 0;
 }
 .plan-cards {
     display: flex;
@@ -187,16 +328,49 @@ nav a:hover::after { width: 100%; }
 .plan {
     background: var(--gray-dark);
     padding: 40px 30px;
-    width: 320px;
+    width: 350px;
     border-radius: 12px;
     text-align: left;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: var(--transition);
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.plan::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+.plan:hover::before {
+    transform: scaleX(1);
 }
 .plan:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-transparent);
+}
+.plan.popular {
+    border: 1px solid var(--primary);
+    transform: translateY(-10px);
+}
+.plan.popular::after {
+    content: 'POPULAR';
+    position: absolute;
+    top: 20px;
+    right: -30px;
+    background: var(--primary);
+    color: white;
+    padding: 5px 30px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transform: rotate(45deg);
 }
 .plan h3 {
     font-size: 1.6rem;
@@ -207,19 +381,25 @@ nav a:hover::after { width: 100%; }
     font-size: 2.5rem;
     font-weight: 800;
     color: var(--primary);
+    margin: 15px 0;
+}
+.price span { 
+    font-size: 1rem;
+    color: var(--text-light);
 }
 .plan ul {
     margin-top: 15px;
     list-style: none;
 }
 .plan ul li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 .plan ul li i {
     color: var(--primary-light);
+    min-width: 20px;
 }
 .plan-btn {
     width: 100%;
@@ -229,12 +409,17 @@ nav a:hover::after { width: 100%; }
     padding: 14px;
     font-weight: 700;
     border-radius: 6px;
-    margin-top: 20px;
-    transition: all 0.3s ease;
+    margin-top: 30px;
+    transition: var(--transition);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
 }
 .plan-btn:hover {
     background: var(--primary-dark);
-    transform: scale(1.05);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,102,255,0.3);
 }
 
 /* COMPARISON TABLE */
@@ -247,30 +432,178 @@ nav a:hover::after { width: 100%; }
     border-collapse: collapse;
     overflow: hidden;
     border-radius: 12px;
+    box-shadow: var(--shadow);
 }
 .comparison th {
     background: var(--primary);
     color: var(--white);
     padding: 15px;
     font-size: 1.1rem;
+    text-align: left;
 }
 .comparison td {
     padding: 15px;
-    text-align: center;
+    text-align: left;
     color: var(--text-light);
     background: var(--gray-light);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 .comparison tr:nth-child(even) td {
     background: var(--black);
 }
 .comparison tr:hover td {
-    background: rgba(0,102,255,0.1);
+    background: var(--primary-transparent);
+}
+.comparison td:first-child {
+    font-weight: 600;
+    color: var(--white);
+}
+.comparison td i {
+    margin-right: 8px;
+    color: var(--primary-light);
+}
+
+/* TESTIMONIALS */
+.testimonials {
+    padding: 100px 5%;
+    background: var(--black);
+}
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+.testimonial-card {
+    background: var(--gray-dark);
+    padding: 30px;
+    border-radius: 12px;
+    transition: var(--transition);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-transparent);
+}
+.testimonial-content {
+    font-style: italic;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+.author-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+.author-info p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* CTA SECTION */
+.cta-section {
+    padding: 80px 5%;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    text-align: center;
+    color: white;
+}
+.cta-section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 20px;
+}
+.cta-section p {
+    max-width: 700px;
+    margin: 0 auto 30px;
+    font-size: 1.1rem;
+}
+.cta-btn {
+    background: white;
+    color: var(--primary);
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.cta-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* FOOTER */
 footer {
     background-color: var(--gray-dark);
-    padding: 50px 5%;
+    padding: 80px 5% 30px;
+}
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+}
+.footer-column h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--primary);
+}
+.footer-column ul {
+    list-style: none;
+}
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+.footer-column ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: var(--transition);
+    display: block;
+    padding: 5px 0;
+}
+.footer-column ul li a:hover {
+    color: var(--primary);
+    transform: translateX(5px);
+}
+.footer-column .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+.footer-column .social-links a {
+    color: var(--text-light);
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+.footer-column .social-links a:hover {
+    color: var(--primary);
+    transform: translateY(-3px);
 }
 .footer-info {
     display: flex;
@@ -284,14 +617,107 @@ footer {
 .footer-logo {
     font-weight: 800;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .footer-logo span { color: var(--primary); }
 
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 999;
+    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+}
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+.back-to-top:hover {
+    background: var(--primary-dark);
+    transform: translateY(-5px);
+}
+
+/* Typing animation */
+.typewriter {
+    overflow: hidden;
+    border-right: .15em solid var(--primary);
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: 
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary); }
+}
+
 /* RESPONSIVE */
+@media (max-width: 992px) {
+    .hero {
+        padding: 180px 5% 100px;
+        background-attachment: scroll;
+    }
+}
+
 @media (max-width: 768px) {
-    nav { display: none; }
-    .hero { padding: 140px 5% 80px; }
-    .plan-cards { flex-direction: column; align-items: center; }
+    header {
+        padding: 15px 5%;
+    }
+    nav { 
+        display: none; 
+    }
+    .hero { 
+        padding: 150px 5% 80px; 
+    }
+    .hero h1 { 
+        min-height: auto; 
+    }
+    .plan-cards { 
+        flex-direction: column; 
+        align-items: center; 
+    }
+    .typewriter {
+        white-space: normal;
+        border-right: none;
+        animation: none;
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .hero-btn, .hero-btn.secondary {
+        width: 100%;
+    }
 }
 </style>
 </head>
@@ -301,62 +727,95 @@ footer {
     <div class="logo"><i class="fas fa-server"></i>AvoX<span>Hosting</span></div>
     <nav>
         <a href="#"><i class="fas fa-home"></i>Home</a>
-        <a href="#"><i class="fas fa-box"></i>Standard VDS</a>
-        <a href="#"><i class="fas fa-gem"></i>Premium VDS</a>
-        <a href="#"><i class="fas fa-gamepad"></i>Game Servers</a>
-        <a href="#"><i class="fas fa-users"></i>Reseller</a>
-        <a href="#"><i class="fas fa-envelope"></i>Contact</a>
+        <a href="#services"><i class="fas fa-box"></i>Services</a>
+        <a href="#plans"><i class="fas fa-gem"></i>Plans</a>
+        <a href="#games"><i class="fas fa-gamepad"></i>Game Servers</a>
+        <a href="#contact"><i class="fas fa-envelope"></i>Contact</a>
     </nav>
-    <button class="cta"><i class="fas fa-user"></i> Client Area</button>
+    <button class="cta" onclick="window.location.href='https://client.avoxhosting.site/index.php?rp=/login'"><i class="fas fa-user"></i> Client Area</button>
 </header>
 
-<section class="hero" data-aos="fade-up">
-    <h1><i class="fas fa-bolt"></i> Don't accept less <span>Choose the best</span> for your server with AvoX Hosting</h1>
-    <p><i class="fas fa-shield-alt"></i> Windows and Linux servers with unbeatable protection & blazing performance. Your server online in under 5 minutes.</p>
-    <div class="hero-buttons">
-        <button class="hero-btn" data-aos="zoom-in"><i class="fas fa-rocket"></i> START NOW</button>
-        <button class="hero-btn secondary" data-aos="zoom-in"><i class="fas fa-book"></i> LEARN MORE</button>
+<section class="hero">
+    <div class="hero-content" data-aos="fade-up">
+        <h1 class="typewriter"><i class="fas fa-bolt"></i> Don't accept less <span>Choose the best</span> for your server with AvoX Hosting</h1>
+        <p><i class="fas fa-shield-alt"></i> Windows and Linux servers with unbeatable protection & blazing performance. Your server online in under 5 minutes.</p>
+        <div class="hero-buttons">
+            <button class="hero-btn" data-aos="zoom-in" onclick="window.location.href='https://client.avoxhosting.site/index.php?rp=/login'"><i class="fas fa-rocket"></i> START NOW</button>
+            <button class="hero-btn secondary" data-aos="zoom-in"><i class="fas fa-book"></i> LEARN MORE</button>
+        </div>
     </div>
 </section>
 
-<section class="plans">
+<section class="features" id="services">
     <div class="section-header" data-aos="fade-up">
-        <h2><i class="fas fa-layer-group"></i> Our Plans</h2>
-        <p>Find the perfect hosting solution for your needs</p>
+        <h2><i class="fas fa-star"></i> Why Choose Us</h2>
+        <p>Premium hosting solutions with unmatched performance and reliability</p>
     </div>
-    <div class="plan-cards">
-        <div class="plan" data-aos="flip-left">
-            <h3><i class="fas fa-cloud"></i> VPS Hosting</h3>
-            <div class="price">€4<span>/mo</span></div>
-            <ul>
-                <li><i class="fas fa-microchip"></i> 8x vCores</li>
-                <li><i class="fas fa-shield-alt"></i> Advanced DDoS</li>
-                <li><i class="fas fa-hdd"></i> NVMe M.2 Storage</li>
-                <li><i class="fas fa-map-marker-alt"></i> Germany Datacenter</li>
-            </ul>
-            <button class="plan-btn"><i class="fas fa-shopping-cart"></i> ORDER NOW</button>
+    <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
+            <h3>Blazing Fast Speed</h3>
+            <p>Our NVMe SSD storage and optimized networks ensure your server runs at peak performance with minimal latency.</p>
         </div>
-        <div class="plan" data-aos="flip-left">
-            <h3><i class="fas fa-desktop"></i> RDP Hosting</h3>
-            <div class="price">€4.99<span>/mo</span></div>
-            <ul>
-                <li><i class="fas fa-microchip"></i> 16x vCores</li>
-                <li><i class="fas fa-shield"></i> Enterprise DDoS</li>
-                <li><i class="fas fa-database"></i> RAID-10 NVMe</li>
-                <li><i class="fas fa-globe"></i> Multi-Location</li>
-            </ul>
-            <button class="plan-btn"><i class="fas fa-shopping-cart"></i> ORDER NOW</button>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Enterprise Protection</h3>
+            <p>15 Tbps DDoS protection keeps your services online even during the largest attacks.</p>
         </div>
-        <div class="plan" data-aos="flip-left">
-            <h3><i class="fas fa-gamepad"></i> Game Hosting</h3>
-            <div class="price">€1.50<span>/mo</span></div>
-            <ul>
-                <li><i class="fas fa-microchip"></i> 1 vCore</li>
-                <li><i class="fas fa-memory"></i> 2GB RAM</li>
-                <li><i class="fas fa-headset"></i> 24/7 Support</li>
-                <li><i class="fas fa-map-marker-alt"></i> Germany Datacenter</li>
-            </ul>
-            <button class="plan-btn"><i class="fas fa-clock"></i> COMING SOON</button>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-icon"><i class="fas fa-headset"></i></div>
+            <h3>24/7 Expert Support</h3>
+            <p>Our team of hosting experts is available around the clock to assist you with any issues.</p>
+        </div>
+    </div>
+</section>
+
+<section class="plans" id="plans">
+    <div class="plans-content">
+        <div class="section-header" data-aos="fade-up">
+            <h2><i class="fas fa-layer-group"></i> Our Hosting Plans</h2>
+            <p>Find the perfect hosting solution for your needs at competitive prices</p>
+        </div>
+        <div class="plan-cards">
+            <div class="plan" data-aos="flip-left" data-aos-delay="100">
+                <h3><i class="fas fa-cloud"></i> VPS Hosting</h3>
+                <div class="price">€4<span>/month</span></div>
+                <ul>
+                    <li><i class="fas fa-microchip"></i> 8x vCores @ 3.5GHz</li>
+                    <li><i class="fas fa-memory"></i> 16GB DDR4 RAM</li>
+                    <li><i class="fas fa-hdd"></i> 100GB NVMe M.2 Storage</li>
+                    <li><i class="fas fa-network-wired"></i> 10Gbps Network Port</li>
+                    <li><i class="fas fa-shield-alt"></i> Advanced DDoS Protection</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Germany Datacenter</li>
+                </ul>
+                <button class="plan-btn"><i class="fas fa-shopping-cart"></i> Order Now</button>
+            </div>
+            <div class="plan popular" data-aos="flip-left" data-aos-delay="200">
+                <h3><i class="fas fa-desktop"></i> RDP Hosting</h3>
+                <div class="price">€4.99<span>/month</span></div>
+                <ul>
+                    <li><i class="fas fa-microchip"></i> 16x vCores @ 4.0GHz</li>
+                    <li><i class="fas fa-memory"></i> 32GB DDR4 RAM</li>
+                    <li><i class="fas fa-database"></i> 200GB RAID-10 NVMe</li>
+                    <li><i class="fas fa-network-wired"></i> 20Gbps Network Port</li>
+                    <li><i class="fas fa-shield"></i> Enterprise DDoS Protection</li>
+                    <li><i class="fas fa-globe"></i> Multi-Location Available</li>
+                </ul>
+                <button class="plan-btn"><i class="fas fa-shopping-cart"></i> Order Now</button>
+            </div>
+            <div class="plan" data-aos="flip-left" data-aos-delay="300" id="games">
+                <h3><i class="fas fa-gamepad"></i> Game Hosting</h3>
+                <div class="price">€1.50<span>/month</span></div>
+                <ul>
+                    <li><i class="fas fa-microchip"></i> 1 vCore @ 3.5GHz</li>
+                    <li><i class="fas fa-memory"></i> 2GB DDR4 RAM</li>
+                    <li><i class="fas fa-hdd"></i> 20GB SSD Storage</li>
+                    <li><i class="fas fa-network-wired"></i> 1Gbps Network Port</li>
+                    <li><i class="fas fa-headset"></i> 24/7 Support</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Germany Datacenter</li>
+                </ul>
+                <button class="plan-btn" onclick="window.location.href='https://client.avoxhosting.site/index.php?rp=/store/san-andreas-multiplayer'"><i class="fas fa-gamepad"></i> Get Started</button>
+            </div>
         </div>
     </div>
 </section>
@@ -364,7 +823,7 @@ footer {
 <section class="comparison" data-aos="fade-up">
     <div class="section-header">
         <h2><i class="fas fa-balance-scale"></i> Why Choose AvoX Hosting?</h2>
-        <p>Compare us to the competition</p>
+        <p>Compare us to the competition - the numbers speak for themselves</p>
     </div>
     <table>
         <tr>
@@ -375,33 +834,33 @@ footer {
         </tr>
         <tr>
             <td><i class="fas fa-signal"></i> Network Uptime</td>
-            <td>99.99%</td>
+            <td>99.99% SLA</td>
             <td>98.32%</td>
             <td>96.11%</td>
         </tr>
         <tr>
             <td><i class="fas fa-shield-alt"></i> DDoS Protection</td>
-            <td>15 Tbps</td>
+            <td>15 Tbps Enterprise</td>
             <td>4 Tbps</td>
             <td>80 Gbps</td>
         </tr>
         <tr>
             <td><i class="fas fa-id-badge"></i> Dedicated IP</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>–</td>
+            <td>✓ Included</td>
+            <td>✓ Extra Cost</td>
+            <td>– Not Available</td>
         </tr>
         <tr>
-            <td><i class="fas fa-hdd"></i> Storage</td>
+            <td><i class="fas fa-hdd"></i> Storage Type</td>
             <td>SSD NVMe M.2</td>
             <td>SSD NVMe</td>
             <td>HDD</td>
         </tr>
         <tr>
             <td><i class="fas fa-users"></i> Unlimited Player Slots</td>
-            <td>✓</td>
-            <td>–</td>
-            <td>–</td>
+            <td>✓ Included</td>
+            <td>– Limited</td>
+            <td>– Limited</td>
         </tr>
         <tr>
             <td><i class="fas fa-tachometer-alt"></i> Internet Speeds</td>
@@ -410,15 +869,109 @@ footer {
             <td>500 Mbps</td>
         </tr>
         <tr>
-            <td><i class="fas fa-server"></i> Resellers</td>
+            <td><i class="fas fa-server"></i> Infrastructure</td>
             <td>Own Hardware</td>
             <td>Resells</td>
             <td>Resells</td>
         </tr>
     </table>
 </section>
-<footer>
-    <div class="footer-info" data-aos="fade-up">
+
+<section class="testimonials">
+    <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-quote-left"></i> What Our Clients Say</h2>
+        <p>Don't just take our word for it - hear from our satisfied customers</p>
+    </div>
+    <div class="testimonial-grid">
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-content">
+                "AvoX Hosting has been a game-changer for our community. The performance is incredible and their support team is always quick to help with any issues."
+            </div>
+            <div class="testimonial-author">
+                <div class="author-avatar">JD</div>
+                <div class="author-info">
+                    <h4>John Doe</h4>
+                    <p>Game Server Admin</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonial-content">
+                "After trying several hosting providers, AvoX stands out with their reliability and speed. Our website loads 3x faster since we switched to their VPS."
+            </div>
+            <div class="testimonial-author">
+                <div class="author-avatar">AS</div>
+                <div class="author-info">
+                    <h4>Anna Smith</h4>
+                    <p>Web Developer</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="testimonial-content">
+                "The DDoS protection has saved us multiple times during attacks that would have taken down our services with other hosts. Worth every penny!"
+            </div>
+            <div class="testimonial-author">
+                <div class="author-avatar">MJ</div>
+                <div class="author-info">
+                    <h4>Mike Johnson</h4>
+                    <p>eCommerce Owner</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section" data-aos="fade-up">
+    <h2>Ready to Experience Premium Hosting?</h2>
+    <p>Join thousands of satisfied customers who trust AvoX Hosting for their critical services.</p>
+    <button class="cta-btn" onclick="window.location.href='https://client.avoxhosting.site/index.php?rp=/login'">GET STARTED NOW</button>
+</section>
+
+<footer id="contact">
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>AvoX Hosting</h3>
+            <p>Premium hosting solutions with unmatched performance, reliability, and support.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Services</h3>
+            <ul>
+                <li><a href="#">VPS Hosting</a></li>
+                <li><a href="#">RDP Hosting</a></li>
+                <li><a href="#">Game Servers</a></li>
+                <li><a href="#">Reseller Hosting</a></li>
+                <li><a href="#">DDoS Protection</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Company</h3>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Datacenters</a></li>
+                <li><a href="#">Network</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Careers</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="#">Knowledgebase</a></li>
+                <li><a href="#">Support Tickets</a></li>
+                <li><a href="#">Server Status</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-info">
         <div class="footer-logo"><i class="fas fa-server"></i> AvoX<span>Hosting</span></div>
         <div><i class="fas fa-copyright"></i> 2025 AvoX Hosting. All Rights Reserved.</div>
     </div>
@@ -428,6 +981,20 @@ footer {
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 AOS.init({ duration: 900, easing: 'ease-in-out', once: true });
+
 </script>
+	<!-- Start Crisp Chat -->
+		<script type="text/javascript">
+		window.$crisp = [];
+		window.CRISP_WEBSITE_ID = "9f59b67a-7d61-4c2a-9329-ff489d39bc2d";
+		(function () {
+		  d = document;
+		  s = d.createElement("script");
+		  s.src = "https://client.crisp.chat/l.js";
+		  s.async = 1;
+		  d.getElementsByTagName("head")[0].appendChild(s);
+		})();
+		</script>
+		<!-- End Crisp Chat -->
 </body>
 </html>
