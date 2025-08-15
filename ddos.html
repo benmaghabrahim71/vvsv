@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDoS Protection - AvoX Hosting</title>
+<meta name="description" content="Enterprise-grade DDoS protection with 15 Tbps capacity. Protect your servers from all types of attacks with our advanced mitigation technology.">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #0066FF;
+    --primary-light: #1E90FF;
+    --primary-dark: #004ACC;
+    --primary-transparent: rgba(0, 102, 255, 0.1);
+    --black: #0A0A0A;
+    --gray-dark: #181A20;
+    --gray-light: #23252E;
+    --gray-border: #22242D;
+    --text-light: #E0E0E0;
+    --white: #FFFFFF;
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, #10111a 0%, #181a20 60%, #10111a 100%);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.5px;
+}
+
+/* Header Styles */
+header {
+    background: rgba(10,10,10,0.97);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    border-bottom: 1.5px solid rgba(0,102,255,0.13);
+    box-shadow: 0 2px 30px rgba(0,0,0,0.11);
+    transition: var(--transition);
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: -2px;
+    text-shadow: 0 2px 5px rgba(0,102,255,0.08);
+}
+
+.logo span { color: var(--primary); margin-left: 5px; }
+.logo i { margin-right: 10px; color: var(--primary); }
+.logo:hover { transform: scale(1.05); }
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 600;
+    font-size: 1.08rem;
+    position: relative;
+    transition: var(--transition);
+    padding: 10px 0;
+    letter-spacing: 0.1px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+nav a i { color: var(--primary-light); }
+nav a:hover { color: var(--primary-light); }
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2.5px;
+    background: var(--primary);
+    bottom: 0; left: 0;
+    transition: var(--transition);
+}
+nav a:hover::after { width: 100%; }
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(10,10,10,0.98);
+    backdrop-filter: blur(15px);
+    min-width: 200px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    border: 1px solid var(--gray-border);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    padding: 8px 0;
+}
+
+.dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--gray-border);
+}
+
+.dropdown-content a {
+    color: var(--text-light);
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    margin: 0;
+    font-size: 1rem;
+    transition: var(--transition);
+    border-radius: 0;
+}
+
+.dropdown-content a:hover {
+    background: var(--primary-transparent);
+    color: var(--primary-light);
+    transform: translateX(5px);
+}
+
+.dropdown-content a::after {
+    display: none;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+    display: block;
+    animation: fadeInDown 0.3s ease-out;
+}
+
+.dropdown-content:hover {
+    display: block;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.cta {
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    padding: 13px 28px;
+    border-radius: 10px;
+    color: var(--white);
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    box-shadow: 0 6px 22px rgba(0, 102, 255, 0.22);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.cta:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 10px 32px rgba(0,102,255,0.34);
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: 16px;
+}
+
+.menu-toggle span {
+    width: 26px;
+    height: 3px;
+    background: var(--primary);
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* DDoS Hero Section */
+.ddos-hero {
+    text-align: center;
+    padding: 200px 10% 120px;
+    background: linear-gradient(135deg, rgba(10,10,10,0.97) 0%, rgba(30,30,30,0.96) 100%);
+    position: relative;
+    color: white;
+    overflow: hidden;
+    min-height: 80vh;
+}
+
+.ddos-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(0,102,255,0.13) 0%, transparent 60%);
+    z-index: 0;
+}
+
+.ddos-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.ddos-hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 30px;
+    line-height: 1.18;
+    letter-spacing: -2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.24);
+    color: #fff;
+}
+
+.ddos-hero h1 i { color: var(--primary-light); }
+
+.ddos-hero p {
+    color: var(--text-light);
+    font-size: 1.27rem;
+    max-width: 800px;
+    margin: 0 auto 38px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.29);
+}
+
+.ddos-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.stat-item {
+    background: rgba(0,102,255,0.1);
+    padding: 20px 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(0,102,255,0.2);
+    text-align: center;
+    min-width: 150px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary);
+    display: block;
+}
+
+.stat-label {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* DDoS Features */
+.ddos-features {
+    padding: 100px 5%;
+    background-color: var(--gray-dark);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 900;
+    position: relative;
+    display: inline-block;
+    letter-spacing: -1.2px;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 5px;
+}
+
+.section-header p {
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 20px auto 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 34px;
+    margin-top: 55px;
+}
+
+.feature-card {
+    background: linear-gradient(130deg,var(--gray-light) 80%,var(--primary-transparent));
+    padding: 45px 32px;
+    border-radius: 16px;
+    text-align: center;
+    transition: var(--transition);
+    border: 1.5px solid var(--gray-border);
+    box-shadow: 0 8px 35px rgba(0,102,255,0.07);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.03) rotate(-1deg);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-transparent);
+    background: linear-gradient(120deg,var(--gray-light) 60%,var(--primary-transparent));
+}
+
+.feature-icon {
+    font-size: 3.35rem;
+    color: var(--primary);
+    margin-bottom: 23px;
+    transition: var(--transition);
+    filter: drop-shadow(0 4px 16px rgba(0,102,255,0.13));
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.16) rotate(7deg);
+}
+
+.feature-card h3 {
+    font-size: 1.44rem;
+    margin-bottom: 17px;
+    font-weight: 700;
+}
+
+.feature-card p {
+    color: var(--text-light);
+}
+
+/* DDoS Protection Plans */
+.ddos-plans {
+    padding: 100px 5%;
+    background-color: var(--black);
+    position: relative;
+}
+
+.ddos-plans::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 80% 20%, rgba(0,102,255,0.13) 0%, transparent 60%);
+    z-index: 0;
+}
+
+.ddos-plans-content {
+    position: relative;
+    z-index: 1;
+}
+
+.plan-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+}
+
+.plan {
+    background: linear-gradient(129deg,var(--gray-light) 80%,var(--primary-transparent));
+    padding: 45px 32px;
+    width: 350px;
+    border-radius: 16px;
+    text-align: left;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 1.5px solid var(--gray-border);
+    margin-bottom: 24px;
+    box-shadow: 0 8px 35px rgba(0,102,255,0.07);
+}
+
+.plan::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(.77,.2,.05,1.01);
+}
+
+.plan:hover::before {
+    transform: scaleX(1);
+}
+
+.plan:hover {
+    transform: translateY(-11px) scale(1.025) rotate(1deg);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-transparent);
+}
+
+.plan.popular {
+    border: 2.4px solid var(--primary);
+    transform: translateY(-10px);
+    background: linear-gradient(129deg,var(--gray-light) 60%,var(--primary-transparent));
+}
+
+.plan.popular::after {
+    content: 'RECOMMENDED';
+    position: absolute;
+    top: 22px;
+    right: -32px;
+    background: var(--primary);
+    color: white;
+    padding: 5px 32px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    transform: rotate(45deg);
+    letter-spacing: 2px;
+}
+
+.plan h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 13px;
+}
+
+.price {
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--primary);
+    margin: 15px 0;
+    letter-spacing: -1px;
+}
+
+.price span { 
+    font-size: 1.09rem;
+    color: var(--text-light);
+}
+
+.plan ul {
+    margin-top: 17px;
+    list-style: none;
+}
+
+.plan ul li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.plan ul li i {
+    color: var(--primary-light);
+    min-width: 20px;
+}
+
+.plan-btn {
+    width: 100%;
+    background: linear-gradient(90deg,var(--primary),var(--primary-light));
+    color: var(--white);
+    border: none;
+    padding: 15px;
+    font-weight: 800;
+    border-radius: 8px;
+    margin-top: 32px;
+    transition: var(--transition);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-size: 1.01rem;
+    box-shadow: 0 6px 18px rgba(0,102,255,0.14);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.plan-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 11px 34px rgba(0,102,255,0.19);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(130deg,var(--gray-dark) 90%,var(--primary-transparent));
+    padding: 90px 5% 32px;
+    position: relative;
+    border-top: 2px solid var(--gray-border);
+    box-shadow: 0 -2px 18px rgba(0,102,255,0.04);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 45px;
+    margin-bottom: 60px;
+}
+
+.footer-column h3 {
+    font-size: 1.35rem;
+    margin-bottom: 22px;
+    position: relative;
+    padding-bottom: 11px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--primary);
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2.3px;
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 11px;
+}
+
+.footer-column ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: var(--transition);
+    display: block;
+    padding: 6px 0;
+    font-weight: 600;
+    font-size: 1.04rem;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary);
+    transform: translateX(7px);
+}
+
+.footer-column .social-links {
+    display: flex;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.footer-column .social-links a {
+    color: var(--text-light);
+    font-size: 1.3rem;
+    transition: var(--transition);
+}
+
+.footer-column .social-links a:hover {
+    color: var(--primary);
+    transform: translateY(-4px) scale(1.2);
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1.5px solid rgba(255,255,255,0.13);
+    padding-top: 22px;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.footer-logo {
+    font-weight: 900;
+    font-size: 1.47rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: -1px;
+}
+
+.footer-logo span { color: var(--primary); }
+
+.footer-legal-link {
+    color: var(--primary-light);
+    margin-left: 20px;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.footer-legal-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline wavy;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav { 
+        flex-direction: column;
+        background: var(--gray-dark);
+        position: fixed;
+        left: 0; top: 56px;
+        width: 100vw;
+        height: 0;
+        overflow: hidden;
+        z-index: 1001;
+        box-shadow: 0 6px 32px rgba(0,0,0,0.15);
+        transition: all 0.4s ease;
+        padding: 0;
+        max-height: 0;
+    }
+    nav.open { 
+        height: auto; 
+        max-height: 80vh;
+        padding: 20px 0; 
+        overflow-y: auto;
+    }
+    nav a { 
+        margin: 0 32px; 
+        padding: 15px 0; 
+        width: calc(100% - 64px); 
+        justify-content: flex-start;
+        font-size: 1.1rem;
+        min-height: 44px;
+    }
+    
+    /* Mobile dropdown styles */
+    .dropdown {
+        width: 100%;
+    }
+    .dropdown > a {
+        justify-content: space-between;
+        width: 100%;
+        min-height: 44px;
+        align-items: center;
+    }
+    .dropdown-content {
+        position: static;
+        display: none;
+        background: var(--gray-light);
+        margin: 0 32px;
+        border-radius: 8px;
+        box-shadow: none;
+        border: 1px solid var(--gray-border);
+        transform: none;
+        margin-top: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    .dropdown-content::before {
+        display: none;
+    }
+    .dropdown-content a {
+        padding: 15px 20px;
+        margin: 0;
+        border-radius: 0;
+        font-size: 1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    .dropdown.open .dropdown-content {
+        display: block;
+        max-height: 300px;
+    }
+    .dropdown.open > a i.fa-chevron-down {
+        transform: rotate(180deg);
+        transition: transform 0.3s ease;
+    }
+    
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        margin-left: 16px;
+        padding: 8px;
+        min-height: 44px;
+        min-width: 44px;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Better mobile spacing */
+    .ddos-hero { padding: 140px 4% 80px; }
+    .ddos-features, .ddos-plans { padding: 60px 4%; }
+    
+    .ddos-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .stat-item {
+        min-width: auto;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle { display: none; }
+}
+
+@media (max-width: 900px) {
+    .plan-cards { flex-direction: column; align-items: center; }
+    .plan { width: 100%; max-width: 400px; }
+}
+
+@media (max-width: 650px) {
+    .ddos-hero, .ddos-features, .ddos-plans { padding-left: 2%; padding-right: 2%; }
+}
+
+@media (max-width: 500px) {
+    header { padding: 10px 2%; }
+    .logo { font-size: 1.13rem; }
+    .footer-info { font-size: 0.95rem; }
+    
+    .ddos-hero h1 { font-size: 2rem; }
+    .ddos-hero p { font-size: 1.1rem; }
+    
+    .plan { padding: 30px 20px; }
+    .price { font-size: 2.2rem; }
+    
+    .feature-card { padding: 30px 20px; }
+    .feature-icon { font-size: 2.8rem; }
+}
+</style>
+</head>
+<body>
+
+<header data-aos="fade-down">
+    <div class="logo"><i class="fas fa-server"></i>AvoX<span>Hosting</span></div>
+    <div class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+    </div>
+    <nav id="main-nav">
+        <a href="index.html"><i class="fas fa-home"></i>Home</a>
+        <div class="dropdown">
+            <a href="#"><i class="fas fa-gamepad"></i>Game Hosting<i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="index.html#games"><i class="fas fa-server"></i>Game Servers</a>
+                <a href="index.html#plans"><i class="fas fa-gem"></i>Hosting Plans</a>
+                <a href="https://client.avoxhosting.site/index.php?rp=/store/san-andreas-multiplayer"><i class="fas fa-rocket"></i>Get Started</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#"><i class="fas fa-server"></i>Other Hosting<i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="index.html#plans"><i class="fas fa-cloud"></i>VPS Hosting</a>
+                <a href="index.html#plans"><i class="fas fa-desktop"></i>RDP Hosting</a>
+                <a href="index.html#plans"><i class="fas fa-database"></i>Dedicated Server</a>
+                <a href="ddos.html"><i class="fas fa-shield-alt"></i>DDoS Protection</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#"><i class="fas fa-info-circle"></i>About Us<i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="index.html#ceos"><i class="fas fa-users"></i>Our Team</a>
+                <a href="partners.html"><i class="fas fa-handshake"></i>Partners</a>
+                <a href="legal.html"><i class="fas fa-balance-scale"></i>Legal</a>
+                <a href="index.html#contact"><i class="fas fa-envelope"></i>Contact</a>
+            </div>
+        </div>
+    </nav>
+    <button class="cta" onclick="window.location.href='https://client.avoxhosting.site/index.php?rp=/login'"><i class="fas fa-user"></i> Client Area</button>
+</header>
+
+<section class="ddos-hero">
+    <div class="ddos-hero-content" data-aos="fade-up">
+        <h1><i class="fas fa-shield-alt"></i> Enterprise DDoS Protection</h1>
+        <p>Protect your infrastructure with our industry-leading 15 Tbps DDoS mitigation technology. Stay online during the largest attacks with zero downtime.</p>
+        
+        <div class="ddos-stats">
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <span class="stat-number">15 Tbps</span>
+                <span class="stat-label">Protection Capacity</span>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <span class="stat-number">99.99%</span>
+                <span class="stat-label">Uptime Guarantee</span>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Monitoring</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ddos-features" id="features">
+    <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-shield-virus"></i> Advanced Protection Features</h2>
+        <p>Comprehensive DDoS mitigation with real-time threat detection and automatic response</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon"><i class="fas fa-radar"></i></div>
+            <h3>Real-Time Detection</h3>
+            <p>Advanced AI-powered systems detect and analyze threats in milliseconds, providing instant response to any attack pattern.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon"><i class="fas fa-network-wired"></i></div>
+            <h3>Layer 3-7 Protection</h3>
+            <p>Complete protection across all network layers, from SYN floods to sophisticated application-layer attacks.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-icon"><i class="fas fa-robot"></i></div>
+            <h3>Automated Mitigation</h3>
+            <p>Intelligent systems automatically respond to threats without human intervention, ensuring zero downtime.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Traffic Analysis</h3>
+            <p>Comprehensive traffic monitoring and analytics to identify patterns and prevent future attacks.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="feature-icon"><i class="fas fa-globe"></i></div>
+            <h3>Global Network</h3>
+            <p>Distributed scrubbing centers worldwide ensure low latency protection regardless of your location.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+            <div class="feature-icon"><i class="fas fa-headset"></i></div>
+            <h3>Expert Support</h3>
+            <p>24/7 DDoS specialists available to assist with custom protection strategies and incident response.</p>
+        </div>
+    </div>
+</section>
+
+<section class="ddos-plans" id="plans">
+    <div class="ddos-plans-content">
+        <div class="section-header" data-aos="fade-up">
+            <h2><i class="fas fa-layer-group"></i> DDoS Protection Plans</h2>
+            <p>Choose the protection level that matches your security requirements</p>
+        </div>
+        <div class="plan-cards">
+            <div class="plan" data-aos="flip-left" data-aos-delay="100">
+                <h3><i class="fas fa-shield-alt"></i> Basic Protection</h3>
+                <div class="price">€9.99<span>/month</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> 1 Tbps Protection</li>
+                    <li><i class="fas fa-check"></i> Layer 3-4 Protection</li>
+                    <li><i class="fas fa-check"></i> Basic Traffic Analysis</li>
+                    <li><i class="fas fa-check"></i> Email Support</li>
+                    <li><i class="fas fa-check"></i> 99.9% Uptime SLA</li>
+                    <li><i class="fas fa-check"></i> 1 Protected IP</li>
+                </ul>
+                <button class="plan-btn"><i class="fas fa-shopping-cart"></i> Order Now</button>
+            </div>
+            <div class="plan popular" data-aos="flip-left" data-aos-delay="200">
+                <h3><i class="fas fa-shield-virus"></i> Professional Protection</h3>
+                <div class="price">€24.99<span>/month</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> 5 Tbps Protection</li>
+                    <li><i class="fas fa-check"></i> Layer 3-7 Protection</li>
+                    <li><i class="fas fa-check"></i> Advanced Traffic Analysis</li>
+                    <li><i class="fas fa-check"></i> Priority Support</li>
+                    <li><i class="fas fa-check"></i> 99.99% Uptime SLA</li>
+                    <li><i class="fas fa-check"></i> 5 Protected IPs</li>
+                    <li><i class="fas fa-check"></i> Custom Rules</li>
+                    <li><i class="fas fa-check"></i> Real-Time Alerts</li>
+                </ul>
+                <button class="plan-btn"><i class="fas fa-shopping-cart"></i> Order Now</button>
+            </div>
+            <div class="plan" data-aos="flip-left" data-aos-delay="300">
+                <h3><i class="fas fa-crown"></i> Enterprise Protection</h3>
+                <div class="price">€49.99<span>/month</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> 15 Tbps Protection</li>
+                    <li><i class="fas fa-check"></i> Full Layer Protection</li>
+                    <li><i class="fas fa-check"></i> AI-Powered Detection</li>
+                    <li><i class="fas fa-check"></i> 24/7 Phone Support</li>
+                    <li><i class="fas fa-check"></i> 99.99% Uptime SLA</li>
+                    <li><i class="fas fa-check"></i> Unlimited IPs</li>
+                    <li><i class="fas fa-check"></i> Custom Mitigation</li>
+                    <li><i class="fas fa-check"></i> Dedicated Manager</li>
+                </ul>
+                <button class="plan-btn"><i class="fas fa-shopping-cart"></i> Order Now</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="contact">
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>AvoX Hosting</h3>
+            <p>Premium hosting solutions with unmatched performance, reliability, and support.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Services</h3>
+            <ul>
+                <li><a href="index.html#plans">VPS Hosting</a></li>
+                <li><a href="index.html#plans">RDP Hosting</a></li>
+                <li><a href="index.html#games">Game Servers</a></li>
+                <li><a href="index.html#plans">Reseller Hosting</a></li>
+                <li><a href="ddos.html">DDoS Protection</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Company</h3>
+            <ul>
+                <li><a href="index.html#ceos">About Us</a></li>
+                <li><a href="#">Datacenters</a></li>
+                <li><a href="#">Network</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Careers</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="#">Knowledgebase</a></li>
+                <li><a href="#">Support Tickets</a></li>
+                <li><a href="#">Server Status</a></li>
+                <li><a href="index.html#contact">Contact Us</a></li>
+                <li><a href="legal.html">Legal Info</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-info">
+        <div class="footer-logo"><i class="fas fa-server"></i> AvoX<span>Hosting</span></div>
+        <div>
+          <span><i class="fas fa-copyright"></i> 2025 AvoX Hosting. All Rights Reserved.</span>
+          <a class="footer-legal-link" href="legal.html"><i class="fas fa-balance-scale"></i> Legal</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 1100, easing: 'ease-in-out', once: true });
+
+// Responsive nav toggle
+const menuToggle = document.getElementById('menu-toggle');
+const nav = document.getElementById('main-nav');
+if(menuToggle && nav) {
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('open');
+        menuToggle.classList.toggle('active');
+    });
+    
+    // Mobile dropdown functionality
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        const dropdownLink = dropdown.querySelector('a');
+        const dropdownContent = dropdown.querySelector('.dropdown-content');
+        const chevron = dropdown.querySelector('.fa-chevron-down');
+        
+        dropdownLink.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdown.classList.toggle('open');
+                if (chevron) {
+                    chevron.style.transition = 'transform 0.3s ease';
+                }
+            }
+        });
+    });
+    
+    window.addEventListener('resize', () => {
+        if(window.innerWidth > 768) {
+            nav.classList.remove('open');
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('open');
+            });
+        }
+    });
+}
+</script>
+
+<!-- Crisp Chat -->
+<script type="text/javascript">
+window.$crisp = [];
+window.CRISP_WEBSITE_ID = "9f59b67a-7d61-4c2a-9329-ff489d39bc2d";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+</script>
+</body>
+</html>

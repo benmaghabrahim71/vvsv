@@ -3,13 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AvoX Hosting - Partners</title>
-<meta name="description" content="Discover AvoX Hosting partners, collaboration rules, and join our network.">
+<title>Legal Information - AvoX Hosting</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
 <style>
 :root {
     --primary: #0066FF;
@@ -17,30 +15,28 @@
     --primary-dark: #004ACC;
     --primary-transparent: rgba(0, 102, 255, 0.1);
     --black: #0A0A0A;
-    --gray-dark: #181A20;
+    --gray-dark: #1E1E1E;
     --gray-light: #23252E;
     --gray-border: #22242D;
     --text-light: #E0E0E0;
     --white: #FFFFFF;
-    --shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
     font-family: 'Open Sans', sans-serif;
     background: linear-gradient(135deg, #10111a 0%, #181a20 60%, #10111a 100%);
     color: var(--white);
-    line-height: 1.6;
-    scroll-behavior: smooth;
     min-height: 100vh;
 }
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif;
     letter-spacing: -0.5px;
 }
+
 header {
-    background: rgba(10,10,10,0.96);
+    background: rgba(10,10,10,0.97);
     padding: 15px 5%;
     display: flex;
     justify-content: space-between;
@@ -50,8 +46,8 @@ header {
     top: 0;
     z-index: 1000;
     border-bottom: 1.5px solid rgba(0,102,255,0.13);
-    box-shadow: 0 2px 30px rgba(0,0,0,0.08);
     backdrop-filter: blur(12px);
+    box-shadow: 0 2px 30px rgba(0,0,0,0.11);
     transition: var(--transition);
 }
 .logo {
@@ -291,179 +287,78 @@ nav a:hover { color: var(--primary-light); }
     }
     
     /* Better mobile spacing */
-    .partners-hero { padding: 140px 4% 60px; }
-    .partners-content { padding: 40px 4%; }
+    .legal-hero { padding: 140px 4% 60px; }
+    .legal-content { padding: 40px 4%; }
 }
 @media (min-width: 769px) {
     .menu-toggle { display: none; }
 }
 
-.partners-hero {
+/* LEGAL HERO */
+.legal-hero {
     text-align: center;
     padding: 160px 8% 60px 8%;
     background: linear-gradient(135deg, rgba(10,10,10,0.99) 0%, rgba(20,40,90,0.98) 100%);
 }
-.partners-hero h1 {
-    font-size: clamp(2.1rem, 5vw, 3.2rem);
+.legal-hero h1 {
+    font-size: clamp(2.1rem, 5vw, 2.9rem);
     font-weight: 900;
     margin-bottom: 18px;
-    color: #fff;
     letter-spacing: -1.5px;
+    color: #fff;
 }
-.partners-hero h1 span { color: var(--primary); }
-.partners-hero p {
+.legal-hero p {
     color: var(--text-light);
     font-size: 1.15rem;
-    max-width: 680px;
-    margin: 0 auto 18px;
+    max-width: 700px;
+    margin: 0 auto 10px;
 }
 @media (max-width: 700px) {
-    .partners-hero { padding: 110px 2% 35px; }
-    .partners-hero h1 { font-size: 1.5rem;}
+    .legal-hero { padding: 110px 2% 35px; }
+    .legal-hero h1 { font-size: 1.5rem;}
 }
 
-.section-header {
-    text-align: center;
-    margin-bottom: 50px;
+/* LEGAL MAIN */
+.legal-main {
+    max-width: 900px;
+    margin: 38px auto 0 auto;
+    background: linear-gradient(120deg,var(--gray-dark) 80%,rgba(0,102,255,0.05));
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 44px 32px 32px 32px;
+    animation: fadeInUp 1.2s both;
 }
-.section-header h2 {
-    font-size: clamp(1.9rem, 4vw, 2.2rem);
-    font-weight: 900;
-    position: relative;
-    display: inline-block;
-    letter-spacing: -1px;
+.legal-main h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
     color: var(--primary-light);
-}
-.section-header h2::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 3px;
-    background: var(--primary);
-    border-radius: 4px;
-}
-.section-header p {
-    color: var(--text-light);
-    max-width: 650px;
-    margin: 18px auto 0;
-    font-size: 1.05rem;
-}
-
-/* PARTNER RULES */
-.partner-rules-section {
-    background: var(--gray-dark);
-    padding: 70px 5% 50px 5%;
-}
-.partner-rules-list {
-    max-width: 750px;
-    margin: 0 auto;
-    text-align: left;
-}
-.partner-rules-list li {
-    margin-bottom: 14px;
-    font-size: 1.07rem;
-    color: var(--text-light);
-    padding-left: 0;
-    list-style: none;
-    display: flex;
-    align-items: flex-start;
-}
-.partner-rules-list li i {
-    color: var(--primary);
-    margin-right: 14px;
-    font-size: 1.13rem;
-    margin-top: 2px;
-}
-@media (max-width: 700px) {
-.partner-rules-section {padding:40px 3% 35px 3%;}
-}
-
-/* PARTNERS GRID */
-.our-partners-section {
-    background: var(--black);
-    padding: 80px 5% 70px 5%;
-}
-.partners-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    align-items: stretch;
-    margin-top: 24px;
-}
-.partner-card {
-    background: linear-gradient(135deg, var(--gray-light) 80%, var(--primary-transparent));
-    border-radius: 14px;
-    box-shadow: 0 6px 30px rgba(0,102,255,0.12);
-    text-align: center;
-    padding: 36px 24px 30px 24px;
-    min-width: 220px;
-    max-width: 320px;
-    flex: 1 1 220px;
-    border: 1.5px solid var(--gray-border);
-    transition: 
-        transform 0.23s cubic-bezier(.18,.89,.32,1.16), 
-        box-shadow 0.29s, 
-        border-color 0.24s, 
-        background 0.32s;
-    position: relative;
-    overflow: hidden;
-}
-.partner-card:hover {
-    transform: translateY(-9px) scale(1.035) rotate(-1.2deg);
-    box-shadow: 0 14px 40px 2px rgba(0,102,255,0.18);
-    border-color: var(--primary);
-    background: linear-gradient(120deg, var(--gray-light) 65%, var(--primary-transparent) 100%);
-}
-.partner-logo {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 16px auto;
-    border-radius: 12px;
-    object-fit: contain;
-    background: #fff;
-    box-shadow: 0 2px 10px rgba(0,102,255,0.07);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.partner-card h3 {
-    font-size: 1.18rem;
-    font-weight: 800;
-    margin-bottom: 7px;
-    color: var(--primary-light);
-}
-.partner-card .partner-type {
-    font-size: 0.98rem;
-    color: var(--primary);
-    font-weight: 600;
-    margin-bottom: 7px;
-    letter-spacing: .5px;
-}
-.partner-card p {
-    color: var(--text-light);
-    font-size: 0.99rem;
-    min-height: 56px;
-}
-.partner-link {
-    margin-top: 13px;
-    display: inline-block;
-    color: var(--primary-light);
+    margin: 36px 0 13px 0;
     font-weight: 700;
-    font-size: 1rem;
+    letter-spacing: -0.5px;
+}
+.legal-main h3 {
+    font-size: 1.13rem;
+    color: var(--primary);
+    margin: 20px 0 8px;
+    font-weight: 600;
+}
+.legal-main ul, .legal-main ol {
+    margin: 10px 0 18px 20px;
+}
+.legal-main a {
+    color: var(--primary);
     text-decoration: underline;
     transition: color 0.2s;
 }
-.partner-link:hover {
-    color: var(--primary-dark);
-    text-decoration: underline wavy;
+.legal-main a:hover { color: var(--primary-light);}
+.legal-main p {
+    color: var(--text-light);
+    margin-bottom: 14px;
+    font-size: 1.08rem;
+    line-height: 1.7;
 }
-@media (max-width: 950px) {
-    .partners-grid { flex-direction: column; gap: 22px; align-items: center; }
-    .partner-card { max-width: 96vw; }
+@media (max-width: 700px) {
+    .legal-main { padding: 18px 8px 18px 8px; }
 }
 
 /* FOOTER */
@@ -472,7 +367,6 @@ footer {
     padding: 70px 5% 30px;
     position: relative;
     border-top: 2px solid var(--gray-border);
-    box-shadow: 0 -2px 18px rgba(0,102,255,0.04);
 }
 .footer-content {
     display: grid;
@@ -535,6 +429,7 @@ footer {
     padding-top: 18px;
     flex-wrap: wrap;
     gap: 10px;
+    font-size: 1rem;
 }
 .footer-logo {
     font-weight: 800;
@@ -589,73 +484,62 @@ footer {
     <button class="cta" onclick="window.location.href='https://client.avoxhosting.site/index.php?rp=/login'"><i class="fas fa-user"></i> Client Area</button>
 </header>
 
-<section class="partners-hero">
-    <h1 data-aos="fade-up"><i class="fas fa-handshake"></i> <span>AvoX Partners</span></h1>
+<section class="legal-hero">
+    <h1 data-aos="fade-up"><i class="fas fa-balance-scale"></i> Legal & Compliance</h1>
     <p data-aos="fade-up" data-aos-delay="60">
-        Trusted technology, gaming, and service partners. Collaborate with us for mutual growth and next-level hosting.
+        Our legal and compliance policies, designed to protect both you and our network. Please read carefully before purchasing or using our services.
     </p>
 </section>
 
-<section class="partner-rules-section">
-    <div class="section-header" data-aos="fade-up">
-        <h2><i class="fas fa-hand-holding-hand"></i> Partner Program Rules</h2>
-        <p>Join our growing network — but please review our collaboration rules first.</p>
-    </div>
-    <ul class="partner-rules-list" data-aos="fade-right">
-        <li><i class="fas fa-check-circle"></i> Maintain a professional online presence (website, social media, or community).</li>
-        <li><i class="fas fa-check-circle"></i> No illegal, malicious, discriminatory, or unethical activities.</li>
-        <li><i class="fas fa-check-circle"></i> No promotion of direct competitors or misleading advertisements.</li>
-        <li><i class="fas fa-check-circle"></i> Mutual logo/brand placement required on both platforms.</li>
-        <li><i class="fas fa-check-circle"></i> All applications reviewed for authenticity & alignment with our values.</li>
-        <li><i class="fas fa-check-circle"></i> Partnership benefits (discounts, sponsorship, support) are at our discretion.</li>
-        <li><i class="fas fa-check-circle"></i> Use AvoX services responsibly and report any abuse/security issues promptly.</li>
-        <li><i class="fas fa-check-circle"></i> We reserve the right to revoke status for any breach of trust or terms.</li>
+<main class="legal-main" id="legal" data-aos="fade-up">
+    <h2><i class="fas fa-shield-alt"></i> General Terms</h2>
+    <ul>
+        <li>All services must be used in accordance with the law. Any illegal content, malicious activity, spam, or abuse will result in immediate termination without refund.</li>
+        <li>Customers are responsible for all activity on their service.</li>
+        <li>We reserve the right to refuse service or terminate accounts at our discretion.</li>
     </ul>
-</section>
 
-<section class="our-partners-section">
-    <div class="section-header" data-aos="fade-up">
-        <h2><i class="fas fa-hands-helping"></i> Our Trusted Partners</h2>
-        <p>We are proud to collaborate with these outstanding organizations and communities.</p>
-    </div>
-    <div class="partners-grid">
-        <div class="partner-card" data-aos="zoom-in" data-aos-delay="100">
-            <img src="https://cdn.worldvectorlogo.com/logos/discord-6.svg" alt="Discord" class="partner-logo" style="background:#5865F2;">
-            <h3>Discord</h3>
-            <div class="partner-type"><i class="fab fa-discord"></i> Communication Platform</div>
-            <p>Official partner for community chat, support, and event hosting. Connect with us and our partners on Discord for seamless communication.</p>
-            <a href="https://discord.com/" class="partner-link" target="_blank">Visit Discord</a>
-        </div>
-        <div class="partner-card" data-aos="zoom-in" data-aos-delay="200">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Firebase_Logo.svg" alt="Firebase" class="partner-logo" style="background:#fff;">
-            <h3>Firebase</h3>
-            <div class="partner-type"><i class="fas fa-cloud"></i> Cloud & DB Partner</div>
-            <p>We use Firebase for real-time app integrations, authentication, and analytics, ensuring reliability and scalability for our clients’ projects.</p>
-            <a href="https://firebase.google.com/" class="partner-link" target="_blank">Learn More</a>
-        </div>
-        <div class="partner-card" data-aos="zoom-in" data-aos-delay="300">
-            <img src="https://cdn.worldvectorlogo.com/logos/github-icon-1.svg" alt="GitHub" class="partner-logo" style="background:#fff;">
-            <h3>GitHub</h3>
-            <div class="partner-type"><i class="fab fa-github"></i> DevOps & Code</div>
-            <p>All our automation, open source contributions, and code transparency are powered by our GitHub partnership.</p>
-            <a href="https://github.com/" class="partner-link" target="_blank">View on GitHub</a>
-        </div>
-        <div class="partner-card" data-aos="zoom-in" data-aos-delay="400">
-            <img src="https://cdn.worldvectorlogo.com/logos/minecraft-4.svg" alt="Minecraft" class="partner-logo" style="background:#62b47a;">
-            <h3>Minecraft Communities</h3>
-            <div class="partner-type"><i class="fas fa-gamepad"></i> Game Server Partner</div>
-            <p>We host and support top Minecraft servers and communities, providing powerful infrastructure and exclusive benefits.</p>
-            <a href="https://minecraft.net/" class="partner-link" target="_blank">Minecraft.net</a>
-        </div>
-        <div class="partner-card" data-aos="zoom-in" data-aos-delay="500">
-            <img src="https://cdn.worldvectorlogo.com/logos/paypal-3.svg" alt="PayPal" class="partner-logo" style="background:#fff;">
-            <h3>PayPal</h3>
-            <div class="partner-type"><i class="fab fa-cc-paypal"></i> Payment Partner</div>
-            <p>All transactions and partner payouts are securely handled via PayPal, ensuring safe and fast payments worldwide.</p>
-            <a href="https://paypal.com/" class="partner-link" target="_blank">PayPal Site</a>
-        </div>
-    </div>
-</section>
+    <h2><i class="fas fa-ban"></i> No Refund Policy</h2>
+    <p>
+        <b>All sales are final.</b> We do not offer refunds for any reason, including (but not limited to) downtime, network issues, customer error, or change of mind. Please ensure our services meet your requirements before purchasing.
+    </p>
+
+    <h2><i class="fas fa-bolt"></i> DDoS & Abuse</h2>
+    <ul>
+        <li>If your service is found to be attacking, participating in DDoS, or is the source of severe abuse, the VPS and/or account will be terminated immediately with no refund.</li>
+        <li>Repeated attacks targeting your service may result in suspension or permanent closure to protect network stability.</li>
+        <li>We cooperate fully with law enforcement and antimalware organizations.</li>
+    </ul>
+
+    <h2><i class="fas fa-balance-scale"></i> Legal Use & Compliance</h2>
+    <ul>
+        <li>No hosting of malware, phishing, copyright-infringing material, or prohibited content.</li>
+        <li>Services must follow the jurisdictional law of the hosting country (primarily Germany/EU).</li>
+        <li>All DMCA and abuse reports are investigated and acted upon promptly.</li>
+    </ul>
+
+    <h2><i class="fas fa-lock"></i> Data & Privacy</h2>
+    <ul>
+        <li>We respect your privacy and comply with GDPR and other applicable privacy laws.</li>
+        <li>Abuse or law enforcement requests may require us to provide relevant data.</li>
+        <li>Customer data is never sold or shared except as required by law.</li>
+    </ul>
+
+    <h2><i class="fas fa-exclamation-triangle"></i> Disclaimer</h2>
+    <p>
+        AvoX Hosting is not responsible for user-uploaded content. We reserve the right to remove, suspend, or terminate any service for violation of these terms. Service is provided as-is, without warranty. Service interruptions, maintenance, and force majeure events may occur. Our liability is limited to the amount paid for the current billing period.
+    </p>
+
+    <h2><i class="fas fa-envelope"></i> Contact & Abuse</h2>
+    <p>
+        For DMCA, legal, privacy, or abuse issues, please contact us at <a href="mailto:abuse@avoxhosting.site">abuse@avoxhosting.site</a>.<br>
+        We respond to all requests within 48 hours.
+    </p>
+    <p>
+        By using our services, you agree to abide by these terms and our Acceptable Use Policy.<br>
+        <b>Thank you for choosing AvoX Hosting!</b>
+    </p>
+</main>
 
 <footer id="contact">
     <div class="footer-content">
@@ -708,7 +592,6 @@ footer {
         </div>
     </div>
 </footer>
-
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
