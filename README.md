@@ -1,92 +1,98 @@
-# Avox Hosting Website
+# AvoX Hosting Website
 
-A modern web hosting company website with clean URLs and PHP backend.
+A modern, responsive website for AvoX Hosting, designed to showcase premium game server hosting services. This website is a complete clone of the Partlix Host design with the AvoX Hosting branding.
 
 ## Features
 
-- **Clean URLs**: All pages are accessible without file extensions (e.g., `avoxhosting.site/index` instead of `avoxhosting.site/index.html`)
-- **PHP Backend**: Converted from static HTML to PHP for better functionality
-- **Modern Design**: Responsive design with Bootstrap and custom animations
-- **Security**: Enhanced security with .htaccess protection
-- **Performance**: Optimized with compression and caching
-
-## URL Structure
-
-All pages are now accessible with clean URLs:
-
-- Home: `/` or `/index`
-- Minecraft Hosting: `/minecraft`
-- MTA Hosting: `/mta`
-- SAMP Hosting: `/samp`
-- VPS Hosting: `/vps-hosting`
-- Discord Hosting: `/discord-hosting`
-- Partners: `/partners`
-- Terms of Service: `/terms-of-service`
-- Privacy Policy: `/privacy-policy`
-- Announcement Manager: `/ann`
-
-## Server Requirements
-
-- Apache web server with mod_rewrite enabled
-- PHP 7.4 or higher
-- .htaccess support
-
-## Installation
-
-1. Upload all files to your web server
-2. Ensure Apache mod_rewrite is enabled
-3. The .htaccess file will automatically handle clean URLs
-4. Access the site at your domain
+- **Fully Responsive Design** - Works perfectly on all devices (desktop, tablet, mobile)
+- **Modern Dark Theme** - Professional dark background with orange accents
+- **Interactive Elements** - Smooth animations, hover effects, and button interactions
+- **Mobile-First Navigation** - Collapsible mobile menu with smooth transitions
+- **Performance Optimized** - Fast loading with optimized CSS and JavaScript
+- **Accessibility Features** - Keyboard navigation and focus management
 
 ## File Structure
 
 ```
-avoxox-main/
-├── index.php              # Home page
-├── minecraft.php          # Minecraft hosting page
-├── mta.php               # MTA hosting page
-├── samp.php              # SAMP hosting page
-├── vps-hosting.php       # VPS hosting page
-├── discord-hosting.php   # Discord hosting page
-├── partners.php          # Partners page
-├── terms-of-service.php  # Terms of service
-├── privacy-policy.php    # Privacy policy
-├── ann.php              # Announcement manager (admin)
-├── .htaccess            # URL rewriting rules
-├── assets/              # CSS, JS, and images
+├── index.html          # Main HTML file
+├── styles.css          # Complete CSS styling
+├── script.js           # JavaScript functionality
 └── README.md           # This file
 ```
 
-## Clean URL Examples
+## Sections Included
 
-Instead of:
-- `avoxhosting.site/index.html`
-- `avoxhosting.site/minecraft.html`
-- `avoxhosting.site/vps-hosting.html`
+1. **Header/Navigation** - Fixed header with logo, navigation links, and client area button
+2. **Hero Section** - Main landing area with call-to-action
+3. **Pricing Plans** - Three hosting plans (Standard, Premium, Game Server)
+4. **Features** - Six feature cards showcasing hosting benefits
+5. **Stats Bar** - Key statistics (24/7 Support, 99% Uptime, 7/7 Continents)
+6. **Comparison Table** - Detailed comparison with competitors
+7. **Footer** - Company information and links
 
-Users can now access:
-- `avoxhosting.site/index`
-- `avoxhosting.site/minecraft`
-- `avoxhosting.site/vps-hosting`
+## Customization
 
-## Security Features
+### Colors
+The main color scheme uses:
+- Primary Orange: `#ff6600`
+- Dark Background: `#0a0a0a`
+- Card Background: `#1a1a1a`
+- Text Colors: `#ffffff`, `#cccccc`
 
-- .htaccess protection for sensitive files
-- Security headers enabled
-- Backup file access prevention
-- XSS protection headers
+### Branding
+To change the branding from "AvoX Host" to your company name:
+1. Update the logo text in `index.html` (lines with "AVOX HOST")
+2. Update the page title in the `<title>` tag
+3. Update all references to "AvoX" throughout the HTML
 
-## Performance Optimizations
+### Content
+- **Pricing**: Modify the prices and features in the pricing cards
+- **Features**: Update the feature descriptions and icons
+- **Comparison**: Adjust the comparison table data
+- **Contact Information**: Update footer links and company details
 
-- Gzip compression enabled
-- Static file caching (1 year)
-- Optimized image formats (WebP support)
-- Minified CSS and JavaScript
+## Browser Support
 
-## Admin Access
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
-The announcement manager is available at `/ann` with password protection.
+## Performance
+
+The website is optimized for:
+- Fast loading times
+- Smooth animations (60fps)
+- Mobile performance
+- SEO best practices
+
+## Getting Started
+
+1. **Download** all files to your web server directory
+2. **Open** `index.html` in a web browser
+3. **Customize** the content and branding as needed
+4. **Deploy** to your hosting provider
+
+## Additional Pages
+
+To add more pages (like individual plan pages, about, contact, etc.):
+1. Create new HTML files following the same structure
+2. Copy the header and footer from `index.html`
+3. Add your content between the header and footer
+4. Update navigation links to point to new pages
 
 ## Support
 
-For technical support or questions about the website setup, please contact the development team.
+For customization help or questions:
+- Check the CSS comments for styling guidance
+- Review the JavaScript comments for functionality details
+- Modify colors and fonts in the CSS variables section
+
+## License
+
+This template is free to use and modify for your hosting business.
+
+---
+
+**AvoX Hosting** - Premium Game Server Hosting Solutions

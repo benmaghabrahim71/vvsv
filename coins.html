@@ -5,8 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Avox Hosting — Rewards & Affiliate Coins</title>
   <meta name="description" content="Earn points by following Avox Hosting on YouTube, Instagram, TikTok and liking our featured Reel. Trade points for rewards."/>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/bgtcfhKC/ajaxe.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Crisp Chat -->
+  <script type="text/javascript">
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = "9f59b67a-7d61-4c2a-9329-ff489d39bc2d";
+      (function () {
+          d = document;
+          s = d.createElement("script");
+          s.src = "https://client.crisp.chat/l.js";
+          s.async = 1;
+          d.getElementsByTagName("head")[0].appendChild(s);
+      })();
+  </script>
   <style>
     :root{
       --bg1:#0a1a2b; /* deep navy */
@@ -28,7 +45,7 @@
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial; color:var(--text);
+      margin:0; font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial; color:var(--text);
       background: radial-gradient(1200px 700px at 10% 0%, #102a4e 0%, transparent 60%),
                   radial-gradient(800px 600px at 90% 10%, #0b2e4f 0%, transparent 60%),
                   linear-gradient(180deg, var(--bg1), var(--bg2));
@@ -45,21 +62,6 @@
     }
     @keyframes fall{ to{ transform: translateY(110vh) rotate(360deg); } }
 
-    header{
-      position:sticky; top:0; z-index:5; padding:14px clamp(12px, 3.5vw, 28px);
-      background: linear-gradient(180deg, rgba(6,16,30,.78), rgba(6,16,30,.35));
-      backdrop-filter: blur(8px);
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .brand{ display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px; }
-    .logo{ width:40px; height:40px; display:grid; place-items:center; background:linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius:12px; box-shadow:0 10px 30px rgba(42,168,255,.35), inset 0 0 18px rgba(255,255,255,.25);
-      transform: rotate(8deg);
-    }
-    .logo span{ font-size:22px; filter:drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
-
-    .cta{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
     .btn{ --pad:12px 18px; padding:var(--pad); border-radius:14px; background:linear-gradient(135deg, #1a4b88, #10335a);
       border:1px solid rgba(255,255,255,.08); color:var(--text); text-decoration:none; font-weight:700; letter-spacing:.3px;
       display:inline-flex; align-items:center; gap:10px; transition: transform .2s ease, background .3s ease, box-shadow .3s ease;
@@ -157,18 +159,37 @@
   <!-- Toast notifications container -->
   <div class="toast-container" id="toasts"></div>
 
-  <header>
-    <div class="brand">
-      <div class="logo" aria-hidden="true"><span>⚡</span></div>
-      <div>
-        <div style="font-size:18px">Avox Hosting</div>
-        <div class="muted" style="font-size:12px; margin-top:-2px">Affiliate Coins & Rewards</div>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="logo">
+          <img src="https://i.ibb.co/bgtcfhKC/ajaxe.png" alt="AvoX Host" class="logo-img">
+          <span class="logo-text">AVOX HOST</span>
+        </div>
       </div>
-    </div>
-    <div class="cta">
-      <button id="shareBtn" class="btn primary" type="button">Share Referral</button>
-      <a class="btn" href="#rewards">View Rewards</a>
-    </div>
+      <div class="nav-center">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="game-servers.html" class="nav-link">Game Servers</a>
+        <a href="vps-hosting.html" class="nav-link">VPS Hosting</a>
+        <a href="rdp-hosting.html" class="nav-link">RDP Hosting</a>
+        <a href="coins.html" class="nav-link active">Rewards</a>
+        <a href="https://discord.gg/TCPyhFHrzY" class="nav-link" target="_blank" rel="noopener noreferrer">Our Discord</a>
+      </div>
+      <div class="nav-right">
+        <div class="language-selector">
+          <i class="fas fa-globe"></i>
+          <span>EN</span>
+        </div>
+        <a href="https://client.avoxhosting.site/index.php?rp=/login" class="client-area-btn" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-user"></i>
+          Client Area
+        </a>
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
   </header>
 
   <section class="hero appear">
@@ -176,6 +197,9 @@
     <p class="subtitle">Follow our official pages and like our featured Reel. Each action is worth <strong>2 coins</strong>. Collect coins and unlock rewards.
       <span class="tooltip">ℹ️<span class="tip">Verification is client-side with webhook submission. Admin review may be required.</span></span>
     </p>
+    <div style="margin-top: 2rem;">
+      <button id="shareBtn" class="btn primary" type="button">Share Referral</button>
+    </div>
   </section>
 
   <section class="grid">
@@ -273,6 +297,7 @@
     © <span id="year"></span> Avox Hosting. All rights reserved. • <span class="muted">Built with ❤️ by AvX DeveloperS.</span>
   </footer>
 
+  <script src="script.js"></script>
   <script>
     // -------------------- CONFIG --------------------
     const CONFIG = {
