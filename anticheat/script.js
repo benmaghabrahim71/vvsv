@@ -29,8 +29,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar background on scroll
-window.addEventListener('scroll', () => {
+// Navbar background on scroll (throttled)
+window.addEventListener('scroll', throttle(() => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
         navbar.style.background = 'rgba(15, 23, 42, 0.98)';
@@ -39,7 +39,7 @@ window.addEventListener('scroll', () => {
         navbar.style.background = 'rgba(15, 23, 42, 0.95)';
         navbar.style.boxShadow = 'none';
     }
-});
+}, 16));
 
 // Intersection Observer for animations
 const observerOptions = {
@@ -58,8 +58,8 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.feature-card, .game-card, .pricing-card, .contact-method');
-    
+    const animatedElements = document.querySelectorAll('.feature-card, .game-card, .pricing-card, .contact-method, .step');
+
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -119,7 +119,6 @@ if (contactForm) {
         e.preventDefault();
         
         // Get form data
-        const formData = new FormData(contactForm);
         const name = contactForm.querySelector('input[type="text"]').value;
         const email = contactForm.querySelector('input[type="email"]').value;
         const service = contactForm.querySelector('select').value;
@@ -335,19 +334,6 @@ function throttle(func, limit) {
     }
 }
 
-// Apply throttling to scroll events
-window.addEventListener('scroll', throttle(() => {
-    // Navbar scroll effect
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(15, 23, 42, 0.98)';
-        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.background = 'rgba(15, 23, 42, 0.95)';
-        navbar.style.boxShadow = 'none';
-    }
-}, 16));
-
 // Add loading state to buttons
 document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -373,13 +359,13 @@ document.querySelectorAll('.download-btn').forEach(btn => {
         document.body.removeChild(link);
         
         // Show success notification
-        showNotification('AvoX Anticheat downloaded successfully! Check your downloads folder.', 'success');
+        showNotification('AvoX Ultimate Anticheat downloaded successfully! Check your downloads folder.', 'success');
     });
 });
 
 // Handle all download buttons
 document.querySelectorAll('button').forEach(btn => {
-    if (btn.textContent.includes('Download') || btn.textContent.includes('Get Free')) {
+    if (btn.textContent.includes('Download') || btn.textContent.includes('Get Ultimate') || btn.textContent.includes('Get Free')) {
         btn.addEventListener('click', function() {
             if (this.classList.contains('download-btn')) {
                 // Handle .pwn file download
@@ -391,7 +377,7 @@ document.querySelectorAll('button').forEach(btn => {
                 link.click();
                 document.body.removeChild(link);
                 
-                showNotification('AvoX Anticheat downloaded successfully! Check your downloads folder.', 'success');
+                showNotification('AvoX Ultimate Anticheat downloaded successfully! Check your downloads folder.', 'success');
             } else {
                 // Handle other downloads (documentation, etc.)
                 showNotification('Download feature coming soon!', 'info');
@@ -429,3 +415,189 @@ loadingStyle.textContent = `
     }
 `;
 document.head.appendChild(loadingStyle);
+
+// Demo video functionality
+document.querySelectorAll('.btn-secondary').forEach(btn => {
+    if (btn.textContent.includes('Watch Demo')) {
+        btn.addEventListener('click', function() {
+            showNotification('Demo video coming soon!', 'info');
+        });
+    }
+});
+
+// Learn more buttons
+document.querySelectorAll('.btn-outline').forEach(btn => {
+    if (btn.textContent.includes('Learn More')) {
+        btn.addEventListener('click', function() {
+            const gameCard = this.closest('.game-card');
+            if (gameCard) {
+                const gameName = gameCard.querySelector('h3').textContent;
+                showNotification(`Learn more about ${gameName} protection coming soon!`, 'info');
+            }
+        });
+    }
+});
+
+// Documentation button
+document.querySelectorAll('.btn-outline').forEach(btn => {
+    if (btn.textContent.includes('Documentation')) {
+        btn.addEventListener('click', function() {
+            showNotification('Documentation will open in a new tab!', 'info');
+            setTimeout(() => {
+                window.open('INSTALLATION_GUIDE.md', '_blank');
+            }, 1000);
+        });
+    }
+});
+
+// Contact form enhancement
+document.querySelectorAll('.contact-form select option').forEach(option => {
+    if (option.value === 'free') {
+        option.textContent = 'Free Ultimate Anticheat';
+    }
+});
+
+// Add smooth scrolling for all internal links
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            const offsetTop = targetElement.offsetTop - 70; // Account for fixed navbar
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Add intersection observer for step animations
+const stepObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+        }
+    });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.step').forEach(step => {
+    step.style.opacity = '0';
+    step.style.transform = 'translateX(-30px)';
+    step.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    stepObserver.observe(step);
+});
+
+// Add hover effects for installation cards
+document.querySelectorAll('.install-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+        this.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = 'none';
+    });
+});
+
+// Add click effects for command items
+document.querySelectorAll('.command-item code').forEach(code => {
+    code.addEventListener('click', function() {
+        // Copy command to clipboard
+        navigator.clipboard.writeText(this.textContent).then(() => {
+            showNotification('Command copied to clipboard!', 'success');
+        }).catch(() => {
+            showNotification('Failed to copy command', 'error');
+        });
+    });
+    
+    code.style.cursor = 'pointer';
+    code.title = 'Click to copy';
+});
+
+// Add loading animation for page
+document.addEventListener('DOMContentLoaded', () => {
+    // Remove loading screen if exists
+    const loader = document.querySelector('.loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.remove();
+        }, 500);
+    }
+});
+
+// Add scroll progress indicator
+const progressBar = document.createElement('div');
+progressBar.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    z-index: 1001;
+    transition: width 0.1s ease;
+`;
+document.body.appendChild(progressBar);
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.body.offsetHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    progressBar.style.width = scrollPercent + '%';
+});
+
+// Add back to top button
+const backToTop = document.createElement('button');
+backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+backToTop.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+`;
+
+document.body.appendChild(backToTop);
+
+backToTop.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        backToTop.style.opacity = '1';
+        backToTop.style.visibility = 'visible';
+    } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.visibility = 'hidden';
+    }
+});
+
+// Add CSS variables for the back to top button
+const backToTopStyle = document.createElement('style');
+backToTopStyle.textContent = `
+    :root {
+        --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    }
+`;
+document.head.appendChild(backToTopStyle);
