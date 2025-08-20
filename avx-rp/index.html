@@ -477,6 +477,13 @@
             transform: translateY(-2px);
         }
 
+        /* Fix select dropdown styling */
+        .form-select option {
+            background: #000000;
+            color: #ffffff;
+            padding: 10px;
+        }
+
         .form-textarea {
             min-height: 120px;
             resize: vertical;
@@ -1151,15 +1158,7 @@
                             <textarea class="form-input form-textarea" name="motivation" required placeholder="Tell us why you want to join our community and what you're looking for..."></textarea>
                         </div>
 
-                        <div class="form-group">
-                            <label class="form-label">What roleplay scenarios interest you most? *</label>
-                            <textarea class="form-input form-textarea" name="scenarios" required placeholder="Describe the types of roleplay you enjoy and want to participate in..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">How will you contribute to our community? *</label>
-                            <textarea class="form-input form-textarea" name="contribution" required placeholder="Explain how you plan to contribute positively to our community..."></textarea>
-                        </div>
+                        
 
                         <div class="form-group">
                             <label class="form-label">What is your preferred roleplay character type? *</label>
@@ -1254,48 +1253,11 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label class="form-label">What is your preferred communication style? *</label>
-                            <select class="form-select" name="communicationStyle" required>
-                                <option value="">Select your communication preference</option>
-                                <option value="Text chat only">Text chat only</option>
-                                <option value="Voice chat preferred">Voice chat preferred</option>
-                                <option value="Both equally">Both text and voice equally</option>
-                                <option value="Depends on situation">Depends on the situation</option>
-                            </select>
-                        </div>
+                        
 
-                        <div class="form-group">
-                            <label class="form-label">How do you plan to develop your character over time? *</label>
-                            <textarea class="form-input form-textarea" name="characterDevelopment" required placeholder="Describe your plans for character development and storylines..."></textarea>
-                        </div>
+                        
 
-                        <div class="form-group">
-                            <label class="form-label">What would you do if you witnessed rule-breaking? *</label>
-                            <textarea class="form-input form-textarea" name="ruleBreaking" required placeholder="Explain how you would handle witnessing other players breaking rules..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Do you have any experience with server administration or moderation? *</label>
-                            <select class="form-select" name="adminExperience" required>
-                                <option value="">Select your experience</option>
-                                <option value="None">No experience</option>
-                                <option value="Helper">Helper/Support role</option>
-                                <option value="Moderator">Moderator</option>
-                                <option value="Administrator">Administrator</option>
-                                <option value="Owner">Server Owner</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">What is your favorite aspect of roleplay? *</label>
-                            <textarea class="form-input form-textarea" name="favoriteAspect" required placeholder="Tell us what you enjoy most about roleplay gaming..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Additional Information (Optional)</label>
-                            <textarea class="form-input form-textarea" name="additionalInfo" placeholder="Any additional information you'd like to share about yourself, your roleplay style, or why you want to join our server..."></textarea>
-                        </div>
+                        
 
                         <div class="form-group">
                             <label class="form-label">Agreements *</label>
@@ -1472,41 +1434,33 @@
                         value: `**Roleplay Experience:** ${data.experience}\n**SA-MP Experience:** ${data.sampExperience}\n**Motivation:** ${data.motivation}`,
                         inline: false
                     },
-                    {
-                        name: "🎭 Roleplay Preferences",
-                        value: `**Preferred Character Type:** ${data.characterType}\n**Interesting Scenarios:** ${data.scenarios}\n**Favorite Aspect:** ${data.favoriteAspect}`,
-                        inline: false
-                    },
-                    {
-                        name: "⏰ Availability & Communication",
-                        value: `**Weekly Playtime:** ${data.playtime}\n**Timezone:** ${data.timezone}\n**Microphone:** ${data.microphone}\n**Communication Style:** ${data.communicationStyle}`,
-                        inline: false
-                    },
-                    {
-                        name: "🤝 Community & Contribution",
-                        value: `**How to Contribute:** ${data.contribution}\n**Conflict Resolution:** ${data.conflictResolution}\n**Rule Breaking Response:** ${data.ruleBreaking}`,
-                        inline: false
-                    },
-                    {
-                        name: "📚 Skills & Knowledge",
-                        value: `**RP Commands Familiarity:** ${data.rpCommands}\n**Admin Experience:** ${data.adminExperience}`,
-                        inline: false
-                    },
-                    {
-                        name: "🎨 Character Development",
-                        value: `**Character Development Plans:** ${data.characterDevelopment}`,
-                        inline: false
-                    },
+                                         {
+                         name: "🎭 Roleplay Preferences",
+                         value: `**Preferred Character Type:** ${data.characterType}`,
+                         inline: false
+                     },
+                                         {
+                         name: "⏰ Availability & Communication",
+                         value: `**Weekly Playtime:** ${data.playtime}\n**Timezone:** ${data.timezone}\n**Microphone:** ${data.microphone}`,
+                         inline: false
+                     },
+                                         {
+                         name: "🤝 Community & Contribution",
+                         value: `**Conflict Resolution:** ${data.conflictResolution}`,
+                         inline: false
+                     },
+                                         {
+                         name: "📚 Skills & Knowledge",
+                         value: `**RP Commands Familiarity:** ${data.rpCommands}`,
+                         inline: false
+                     },
+                    
                     {
                         name: "⚠️ Previous Bans",
                         value: `**Previous Ban:** ${data.previousBan}\n**Ban Details:** ${data.banDetails || 'N/A'}`,
                         inline: false
                     },
-                    {
-                        name: "💭 Additional Information",
-                        value: data.additionalInfo || 'No additional information provided',
-                        inline: false
-                    },
+                    
                     {
                         name: "✅ Agreements",
                         value: `**Rules Agreement:** ${data.agreeRules ? '✅' : '❌'}\n**Terms Agreement:** ${data.agreeTerms ? '✅' : '❌'}\n**Age Confirmation:** ${data.agreeAge ? '✅' : '❌'}\n**Privacy Agreement:** ${data.agreePrivacy ? '✅' : '❌'}\n**Updates Agreement:** ${data.agreeUpdates ? '✅' : '❌'}`,
