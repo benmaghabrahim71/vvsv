@@ -1228,11 +1228,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">What do you think makes a good roleplay server? *</label>
-                            <textarea class="form-input form-textarea" name="goodServer" required placeholder="Share your thoughts on what makes a roleplay server great..."></textarea>
-                        </div>
-
-                        <div class="form-group">
                             <label class="form-label">How do you handle conflicts with other players? *</label>
                             <textarea class="form-input form-textarea" name="conflictResolution" required placeholder="Describe how you would handle disagreements or conflicts with other players..."></textarea>
                         </div>
@@ -1295,16 +1290,6 @@
                         <div class="form-group">
                             <label class="form-label">What is your favorite aspect of roleplay? *</label>
                             <textarea class="form-input form-textarea" name="favoriteAspect" required placeholder="Tell us what you enjoy most about roleplay gaming..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">How do you stay in character during intense situations? *</label>
-                            <textarea class="form-input form-textarea" name="stayInCharacter" required placeholder="Describe your approach to maintaining character during dramatic or intense roleplay scenarios..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">What is your approach to learning new server systems? *</label>
-                            <textarea class="form-input form-textarea" name="learningApproach" required placeholder="How do you typically learn and adapt to new server systems and features..."></textarea>
                         </div>
 
                         <div class="form-group">
@@ -1504,12 +1489,12 @@
                     },
                     {
                         name: "📚 Skills & Knowledge",
-                        value: `**RP Commands Familiarity:** ${data.rpCommands}\n**Admin Experience:** ${data.adminExperience}\n**Learning Approach:** ${data.learningApproach}`,
+                        value: `**RP Commands Familiarity:** ${data.rpCommands}\n**Admin Experience:** ${data.adminExperience}`,
                         inline: false
                     },
                     {
                         name: "🎨 Character Development",
-                        value: `**Character Development Plans:** ${data.characterDevelopment}\n**Staying In Character:** ${data.stayInCharacter}`,
+                        value: `**Character Development Plans:** ${data.characterDevelopment}`,
                         inline: false
                     },
                     {
@@ -1544,6 +1529,8 @@
             };
             
             // Send to Discord webhook
+            console.log('Sending webhook payload:', webhookPayload);
+            
             fetch(webhookUrl, {
                 method: 'POST',
                 headers: {
@@ -1552,6 +1539,9 @@
                 body: JSON.stringify(webhookPayload)
             })
             .then(response => {
+                console.log('Webhook response status:', response.status);
+                console.log('Webhook response ok:', response.ok);
+                
                 loading.style.display = 'none';
                 
                 const messageDiv = document.getElementById('message');
@@ -1564,14 +1554,16 @@
                         <strong>Application Submitted Successfully!</strong><br>
                         Your whitelist application has been sent to our staff team via Discord. You will be notified via email within 24-48 hours.
                     `;
+                    console.log('✅ Application submitted successfully to Discord webhook');
                 } else {
-                    // Show error message
+                    // Show error message with more details
                     messageDiv.className = 'message error fade-in';
                     messageDiv.innerHTML = `
                         <i class="fas fa-exclamation-circle" style="font-size: 1.8rem; margin-right: 15px;"></i>
                         <strong>Submission Error!</strong><br>
-                        There was an issue submitting your application. Please try again or contact support.
+                        There was an issue submitting your application (Status: ${response.status}). Please try again or contact support.
                     `;
+                    console.error('❌ Webhook submission failed with status:', response.status);
                 }
                 
                 messageDiv.style.display = 'block';
@@ -1601,7 +1593,8 @@
                     messageDiv.style.display = 'none';
                 }, 8000);
                 
-                console.error('Error submitting application:', error);
+                console.error('❌ Network error submitting application:', error);
+                console.error('Error details:', error.message);
             });
         });
 
@@ -1765,6 +1758,39 @@
         console.log('🎮 Gaming-focused design with SA-MP ENB background');
         console.log('✨ Premium animations and effects activated');
         console.log('📱 Fully responsive design enabled');
+        console.log('🔗 Discord webhook URL:', 'https://discord.com/api/webhooks/1407698225938436137/jlR94X5hoC-wnn8LxiQMnvPxGyb6eS_Uz8ONeYFiPknCOPvCXxa46lL2ELLRBnDO2FeR');
+        
+        // Test webhook function (for debugging)
+        window.testWebhook = function() {
+            const webhookUrl = 'https://discord.com/api/webhooks/1407698225938436137/jlR94X5hoC-wnn8LxiQMnvPxGyb6eS_Uz8ONeYFiPknCOPvCXxa46lL2ELLRBnDO2FeR';
+            const testPayload = {
+                username: "AvoX Test",
+                content: "🧪 Webhook test message - If you see this, the webhook is working!"
+            };
+            
+            console.log('🧪 Testing webhook...');
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(testPayload)
+            })
+            .then(response => {
+                console.log('🧪 Test response status:', response.status);
+                if (response.ok) {
+                    console.log('✅ Webhook test successful!');
+                    alert('Webhook test successful! Check your Discord channel.');
+                } else {
+                    console.log('❌ Webhook test failed with status:', response.status);
+                    alert('Webhook test failed! Status: ' + response.status);
+                }
+            })
+            .catch(error => {
+                console.error('❌ Webhook test error:', error);
+                alert('Webhook test error: ' + error.message);
+            });
+        };
     </script>
 </body>
 </html>
