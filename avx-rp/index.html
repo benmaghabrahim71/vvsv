@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AvoX Roleplay - Premium SA-MP Server</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: rgba(30, 30, 30, 0.95);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #666666;
+            --accent-blue: #00d4ff;
+            --accent-blue-dark: #0099cc;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(0, 212, 255, 0.3);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            --gradient-glow: linear-gradient(45deg, #00d4ff, #8b5cf6, #06b6d4, #00d4ff);
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 30px rgba(0, 212, 255, 0.4);
+            --shadow-purple: 0 0 30px rgba(139, 92, 246, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-blue-dark);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header with Background Image */
+        .header {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.8) 100%), 
+                        url('https://samphosting.com/blog/content/images/2023/04/samp-enb-feature.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            animation: backgroundShift 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundShift {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .header-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 40px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 3;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: logoGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { 
+                text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 0 0 40px rgba(0, 212, 255, 0.8), 0 0 60px rgba(139, 92, 246, 0.5);
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes logoGlow {
+            from { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .logo i {
+            margin-right: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .server-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(40, 40, 40, 0.95) 100%);
+            padding: 25px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.15), transparent);
+            transition: left 0.8s;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 212, 255, 0.05) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover::after {
+            opacity: 1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-20px) scale(1.08);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3), var(--shadow-glow);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .stat-card h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .stat-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--accent-blue);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Main Content */
+        .main-content {
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-radius: 40px 40px 0 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            margin-top: -60px;
+            position: relative;
+            z-index: 3;
+            border: 1px solid var(--border-color);
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+        }
+
+        .tabs {
+            display: flex;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, rgba(40, 40, 40, 0.95) 100%);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .tabs::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 18px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            background: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .tab::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+        }
+
+        .tab.active {
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+        }
+
+        .tab.active::before {
+            width: 100%;
+        }
+
+        .tab:hover {
+            color: var(--text-primary);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .tab i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .tab-content h2 i {
+            margin-right: 15px;
+        }
+
+        .tab-content p {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Form Styles */
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(40, 40, 40, 0.95) 100%);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, rgba(30, 30, 30, 0.95) 100%);
+            color: var(--text-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Rajdhani', sans-serif;
+            backdrop-filter: blur(5px);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 6px rgba(0, 212, 255, 0.15), 0 8px 25px rgba(0, 212, 255, 0.1);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(25, 25, 25, 0.95) 100%);
+            transform: translateY(-2px);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-group:hover {
+            border-color: var(--accent-blue);
+            background: var(--bg-secondary);
+        }
+
+        .checkbox-input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-blue);
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4), var(--shadow-glow);
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-blue);
+            background: var(--bg-secondary);
+        }
+
+        /* Status Display */
+        .status-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
+
+        .status-pending::before {
+            background: var(--warning);
+        }
+
+        .status-approved::before {
+            background: var(--success);
+        }
+
+        .status-rejected::before {
+            background: var(--error);
+        }
+
+        .status-card i {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .status-pending i {
+            color: var(--warning);
+        }
+
+        .status-approved i {
+            color: var(--success);
+        }
+
+        .status-rejected i {
+            color: var(--error);
+        }
+
+        .status-card h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .status-card p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Rules Section */
+        .rules-section {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(40, 40, 40, 0.95) 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 25px 0;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rules-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .rules-section:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
+        }
+
+        .rules-section:hover::before {
+            transform: scaleX(1);
+        }
+
+        .rules-section h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .rules-section h3 i {
+            color: var(--accent-blue);
+        }
+
+        .rules-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rules-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rules-list li:hover {
+            padding-left: 15px;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 10px;
+            margin: 0 -15px;
+            padding-left: 30px;
+        }
+
+        .rules-list i {
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid var(--border-color);
+            border-top: 5px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 25px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success/Error Messages */
+        .message {
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            display: none;
+            animation: slideInDown 0.6s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 80px 0 50px;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
+            margin-top: 80px;
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 15px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(40, 40, 40, 0.95) 100%);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .social-link:hover {
+            color: var(--accent-blue);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+            border-color: var(--accent-blue);
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .header {
+                min-height: 70vh;
+            }
+            
+            .header-content {
+                padding: 20px;
+            }
+            
+            .server-stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+            
+            .tab-content {
+                padding: 25px 15px;
+            }
+            
+            .tab-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .form-container {
+                padding: 25px 15px;
+            }
+            
+            .form-input, .form-select, .form-textarea {
+                padding: 12px 14px;
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .status-card {
+                padding: 25px 20px;
+            }
+            
+            .status-card i {
+                font-size: 3rem;
+            }
+            
+            .status-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .rules-section {
+                padding: 20px 15px;
+            }
+            
+            .rules-section h3 {
+                font-size: 1.3rem;
+            }
+            
+            .social-links {
+                gap: 15px;
+            }
+            
+            .social-link {
+                font-size: 1.3rem;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .stat-card {
+                padding: 15px 10px;
+            }
+            
+            .stat-card i {
+                font-size: 2rem;
+            }
+            
+            .stat-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .tab-content {
+                padding: 20px 10px;
+            }
+            
+            .tab-content h2 {
+                font-size: 1.3rem;
+            }
+            
+            .form-container {
+                padding: 20px 10px;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            .form-label {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .status-card {
+                padding: 20px 15px;
+            }
+            
+            .status-card i {
+                font-size: 2.5rem;
+            }
+            
+            .status-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .rules-section {
+                padding: 15px 10px;
+            }
+            
+            .rules-section h3 {
+                font-size: 1.1rem;
+            }
+            
+            .social-link {
+                font-size: 1.1rem;
+                padding: 8px;
+            }
+        }
+
+        /* Additional Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating animation for cards */
+        .float {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Glow effect */
+        .glow {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Typography improvements */
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-mono {
+            font-family: 'Orbitron', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Background Image -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-gamepad"></i>AVOX ROLEPLAY
+                </div>
+                <div class="subtitle">Premium SA-MP Gaming Experience</div>
+                <div class="server-stats">
+                    <div class="stat-card float">
+                        <i class="fas fa-users"></i>
+                        <h3>200+</h3>
+                        <p>Active Players</p>
+                    </div>
+                    <div class="stat-card float" style="animation-delay: 0.2s;">
+                        <i class="fas fa-star"></i>
+                        <h3>Premium</h3>
+                        <p>Gaming Quality</p>
+                    </div>
+                    <div class="stat-card float" style="animation-delay: 0.4s;">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Protected</h3>
+                        <p>Anti-Cheat System</p>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator" onclick="scrollToContent()">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('application')">
+                    <i class="fas fa-edit"></i>Apply for Whitelist
+                </button>
+                <button class="tab" onclick="showTab('status')">
+                    <i class="fas fa-search"></i>Check Status
+                </button>
+                <button class="tab" onclick="showTab('rules')">
+                    <i class="fas fa-book"></i>Server Rules
+                </button>
+            </div>
+
+            <!-- Application Tab -->
+            <div id="application" class="tab-content active">
+                <h2><i class="fas fa-edit"></i>Whitelist Application</h2>
+                <p>Join our exclusive gaming community by completing this comprehensive application form.</p>
+                
+                <div id="message" class="message"></div>
+                
+                <div class="form-container">
+                    <form id="whitelistForm">
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-input" name="fullName" required placeholder="Enter your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">SA-MP Username *</label>
+                            <input type="text" class="form-input" name="sampUsername" required placeholder="Your SA-MP username">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" class="form-input" name="email" required placeholder="your.email@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Age *</label>
+                            <select class="form-select" name="age" required>
+                                <option value="">Select your age range</option>
+                                <option value="13-15">13-15 years</option>
+                                <option value="16-17">16-17 years</option>
+                                <option value="18-20">18-20 years</option>
+                                <option value="21-25">21-25 years</option>
+                                <option value="26-30">26-30 years</option>
+                                <option value="31+">31+ years</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Country *</label>
+                            <input type="text" class="form-input" name="country" required placeholder="Your country">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Discord Username</label>
+                            <input type="text" class="form-input" name="discord" placeholder="username#0000">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Previous Roleplay Experience *</label>
+                            <select class="form-select" name="experience" required>
+                                <option value="">Select experience level</option>
+                                <option value="None">No experience</option>
+                                <option value="Beginner">Beginner (1-6 months)</option>
+                                <option value="Intermediate">Intermediate (6 months - 2 years)</option>
+                                <option value="Advanced">Advanced (2+ years)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Why do you want to join AvoX Roleplay? *</label>
+                            <textarea class="form-input form-textarea" name="motivation" required placeholder="Tell us why you want to join our community and what you're looking for..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">What roleplay scenarios interest you most? *</label>
+                            <textarea class="form-input form-textarea" name="scenarios" required placeholder="Describe the types of roleplay you enjoy and want to participate in..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">How will you contribute to our community? *</label>
+                            <textarea class="form-input form-textarea" name="contribution" required placeholder="Explain how you plan to contribute positively to our community..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">What is your preferred roleplay character type? *</label>
+                            <select class="form-select" name="characterType" required>
+                                <option value="">Select your preferred character type</option>
+                                <option value="Law Enforcement">Law Enforcement (Police, FBI, etc.)</option>
+                                <option value="Criminal">Criminal (Gang member, drug dealer, etc.)</option>
+                                <option value="Civilian">Civilian (Business owner, employee, etc.)</option>
+                                <option value="Medical">Medical (Doctor, paramedic, etc.)</option>
+                                <option value="Government">Government (Mayor, judge, etc.)</option>
+                                <option value="Other">Other (Specify in additional info)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">How many hours per week can you dedicate to roleplay? *</label>
+                            <select class="form-select" name="playtime" required>
+                                <option value="">Select your weekly playtime</option>
+                                <option value="1-5 hours">1-5 hours per week</option>
+                                <option value="6-10 hours">6-10 hours per week</option>
+                                <option value="11-20 hours">11-20 hours per week</option>
+                                <option value="21-30 hours">21-30 hours per week</option>
+                                <option value="30+ hours">30+ hours per week</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">What timezone are you in? *</label>
+                            <select class="form-select" name="timezone" required>
+                                <option value="">Select your timezone</option>
+                                <option value="EST">Eastern Standard Time (EST)</option>
+                                <option value="CST">Central Standard Time (CST)</option>
+                                <option value="MST">Mountain Standard Time (MST)</option>
+                                <option value="PST">Pacific Standard Time (PST)</option>
+                                <option value="GMT">Greenwich Mean Time (GMT)</option>
+                                <option value="CET">Central European Time (CET)</option>
+                                <option value="EET">Eastern European Time (EET)</option>
+                                <option value="JST">Japan Standard Time (JST)</option>
+                                <option value="AEST">Australian Eastern Standard Time (AEST)</option>
+                                <option value="Other">Other (Please specify)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Do you have a working microphone for voice chat? *</label>
+                            <select class="form-select" name="microphone" required>
+                                <option value="">Select microphone availability</option>
+                                <option value="Yes">Yes, I have a working microphone</option>
+                                <option value="No">No, I don't have a microphone</option>
+                                <option value="Planning">I'm planning to get one soon</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Have you ever been banned from a SA-MP server? *</label>
+                            <select class="form-select" name="previousBan" required>
+                                <option value="">Select your answer</option>
+                                <option value="No">No, I have never been banned</option>
+                                <option value="Yes">Yes, I have been banned before</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="banDetailsGroup" style="display: none;">
+                            <label class="form-label">Please explain the circumstances of your previous ban(s)</label>
+                            <textarea class="form-input form-textarea" name="banDetails" placeholder="Please provide details about the ban(s), including server name, reason, and what you learned from the experience..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">What do you think makes a good roleplay server? *</label>
+                            <textarea class="form-input form-textarea" name="goodServer" required placeholder="Share your thoughts on what makes a roleplay server great..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">How do you handle conflicts with other players? *</label>
+                            <textarea class="form-input form-textarea" name="conflictResolution" required placeholder="Describe how you would handle disagreements or conflicts with other players..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">What is your experience with SA-MP mods and scripts? *</label>
+                            <select class="form-select" name="sampExperience" required>
+                                <option value="">Select your SA-MP experience level</option>
+                                <option value="Beginner">Beginner - New to SA-MP</option>
+                                <option value="Intermediate">Intermediate - Played on a few servers</option>
+                                <option value="Advanced">Advanced - Experienced with multiple servers</option>
+                                <option value="Expert">Expert - Very familiar with SA-MP systems</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Are you familiar with roleplay commands and systems? *</label>
+                            <select class="form-select" name="rpCommands" required>
+                                <option value="">Select your familiarity level</option>
+                                <option value="Not familiar">Not familiar at all</option>
+                                <option value="Somewhat familiar">Somewhat familiar</option>
+                                <option value="Very familiar">Very familiar</option>
+                                <option value="Expert">Expert level</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">What is your preferred communication style? *</label>
+                            <select class="form-select" name="communicationStyle" required>
+                                <option value="">Select your communication preference</option>
+                                <option value="Text chat only">Text chat only</option>
+                                <option value="Voice chat preferred">Voice chat preferred</option>
+                                <option value="Both equally">Both text and voice equally</option>
+                                <option value="Depends on situation">Depends on the situation</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">How do you plan to develop your character over time? *</label>
+                            <textarea class="form-input form-textarea" name="characterDevelopment" required placeholder="Describe your plans for character development and storylines..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">What would you do if you witnessed rule-breaking? *</label>
+                            <textarea class="form-input form-textarea" name="ruleBreaking" required placeholder="Explain how you would handle witnessing other players breaking rules..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Do you have any experience with server administration or moderation? *</label>
+                            <select class="form-select" name="adminExperience" required>
+                                <option value="">Select your experience</option>
+                                <option value="None">No experience</option>
+                                <option value="Helper">Helper/Support role</option>
+                                <option value="Moderator">Moderator</option>
+                                <option value="Administrator">Administrator</option>
+                                <option value="Owner">Server Owner</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">What is your favorite aspect of roleplay? *</label>
+                            <textarea class="form-input form-textarea" name="favoriteAspect" required placeholder="Tell us what you enjoy most about roleplay gaming..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">How do you stay in character during intense situations? *</label>
+                            <textarea class="form-input form-textarea" name="stayInCharacter" required placeholder="Describe your approach to maintaining character during dramatic or intense roleplay scenarios..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">What is your approach to learning new server systems? *</label>
+                            <textarea class="form-input form-textarea" name="learningApproach" required placeholder="How do you typically learn and adapt to new server systems and features..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Additional Information (Optional)</label>
+                            <textarea class="form-input form-textarea" name="additionalInfo" placeholder="Any additional information you'd like to share about yourself, your roleplay style, or why you want to join our server..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Agreements *</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" class="checkbox-input" name="agreeRules" required>
+                                <label>I have read and agree to follow all server rules and guidelines</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" class="checkbox-input" name="agreeTerms" required>
+                                <label>I agree to respect other players and maintain a positive environment</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" class="checkbox-input" name="agreeAge" required>
+                                <label>I confirm I am at least 13 years old and meet age requirements</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" class="checkbox-input" name="agreePrivacy" required>
+                                <label>I agree to the collection and processing of my data for server administration purposes</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" class="checkbox-input" name="agreeUpdates" required>
+                                <label>I agree to receive updates about my application status via email</label>
+                            </div>
+                        </div>
+
+                        <div class="loading" id="loading">
+                            <div class="spinner"></div>
+                            <p>Submitting your application...</p>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>Submit Application
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Status Tab -->
+            <div id="status" class="tab-content">
+                <h2><i class="fas fa-search"></i>Check Application Status</h2>
+                <p>Enter your SA-MP username to check the current status of your whitelist application.</p>
+                
+                <div class="form-container">
+                    <div class="form-group">
+                        <label class="form-label">SA-MP Username</label>
+                        <input type="text" class="form-input" id="statusUsername" placeholder="Enter your SA-MP username">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="checkStatus()">
+                        <i class="fas fa-search"></i>Check Status
+                    </button>
+
+                    <div id="statusResult"></div>
+                </div>
+            </div>
+
+            <!-- Rules Tab -->
+            <div id="rules" class="tab-content">
+                <h2><i class="fas fa-book"></i>Server Rules & Guidelines</h2>
+                <p>Please read and understand these rules before applying for whitelist access.</p>
+                
+                <div class="rules-section">
+                    <h3><i class="fas fa-gavel"></i>General Rules</h3>
+                    <ul class="rules-list">
+                        <li><i class="fas fa-check"></i>No harassment, bullying, or toxic behavior towards other players</li>
+                        <li><i class="fas fa-check"></i>No cheating, exploiting bugs, or using unauthorized modifications</li>
+                        <li><i class="fas fa-check"></i>No spamming in chat or voice channels</li>
+                        <li><i class="fas fa-check"></i>No advertising other servers or services</li>
+                        <li><i class="fas fa-check"></i>Respect all staff members and their decisions</li>
+                        <li><i class="fas fa-check"></i>No inappropriate usernames or character names</li>
+                    </ul>
+                </div>
+
+                <div class="rules-section">
+                    <h3><i class="fas fa-theater-masks"></i>Roleplay Rules</h3>
+                    <ul class="rules-list">
+                        <li><i class="fas fa-check"></i>Stay in character at all times during roleplay scenarios</li>
+                        <li><i class="fas fa-check"></i>No metagaming (using OOC information in character)</li>
+                        <li><i class="fas fa-check"></i>No powergaming (unrealistic actions or abilities)</li>
+                        <li><i class="fas fa-check"></i>Respect other players' roleplay scenarios</li>
+                        <li><i class="fas fa-check"></i>No random killing (RDM) without proper roleplay context</li>
+                        <li><i class="fas fa-check"></i>Follow realistic character development and storylines</li>
+                    </ul>
+                </div>
+
+                <div class="rules-section">
+                    <h3><i class="fas fa-exclamation-triangle"></i>Consequences</h3>
+                    <ul class="rules-list">
+                        <li><i class="fas fa-times"></i>First offense: Warning and education</li>
+                        <li><i class="fas fa-times"></i>Second offense: Temporary ban (1-7 days)</li>
+                        <li><i class="fas fa-times"></i>Third offense: Extended ban (1-4 weeks)</li>
+                        <li><i class="fas fa-times"></i>Severe violations: Permanent ban</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2024 AvoX Roleplay. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll to content function
+        function scrollToContent() {
+            document.querySelector('.main-content').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Enhanced Tab functionality with smooth transitions
+        function showTab(tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            const tabs = document.querySelectorAll('.tab');
+            
+            // Hide all tab contents with fade out
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                content.style.opacity = '0';
+            });
+
+            // Remove active class from all tabs
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab content with fade in
+            const selectedContent = document.getElementById(tabName);
+            selectedContent.classList.add('active');
+            setTimeout(() => {
+                selectedContent.style.opacity = '1';
+            }, 50);
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Enhanced form submission with better UX
+        document.getElementById('whitelistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Show loading with enhanced animation
+            const loading = document.getElementById('loading');
+            loading.style.display = 'block';
+            loading.classList.add('fade-in');
+            
+            // Simulate form submission (replace with actual API call)
+            setTimeout(() => {
+                loading.style.display = 'none';
+                
+                // Show success message with enhanced styling
+                const messageDiv = document.getElementById('message');
+                messageDiv.className = 'message success fade-in';
+                messageDiv.innerHTML = `
+                    <i class="fas fa-check-circle" style="font-size: 1.8rem; margin-right: 15px;"></i>
+                    <strong>Application Submitted Successfully!</strong><br>
+                    Your whitelist application has been received and is under review. You will be notified via email within 24-48 hours.
+                `;
+                messageDiv.style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                
+                // Hide message after 8 seconds
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 8000);
+            }, 3000);
+        });
+
+        // Enhanced status checking with better feedback
+        function checkStatus() {
+            const username = document.getElementById('statusUsername').value.trim();
+            
+            if (!username) {
+                showNotification('Please enter a username to check status.', 'error');
+                return;
+            }
+            
+            // Show loading for status check
+            const statusResult = document.getElementById('statusResult');
+            statusResult.innerHTML = `
+                <div class="loading" style="display: block;">
+                    <div class="spinner"></div>
+                    <p>Checking application status...</p>
+                </div>
+            `;
+            
+            // Simulate status check (replace with actual API call)
+            setTimeout(() => {
+                const statuses = ['Pending', 'Approved', 'Rejected'];
+                const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+                
+                let statusClass = '';
+                let statusIcon = '';
+                let statusText = '';
+                
+                switch(randomStatus) {
+                    case 'Pending':
+                        statusClass = 'status-pending';
+                        statusIcon = 'fas fa-clock';
+                        statusText = 'Your application is currently under review by our staff team. Please check back in 24-48 hours for updates.';
+                        break;
+                    case 'Approved':
+                        statusClass = 'status-approved';
+                        statusIcon = 'fas fa-check-circle';
+                        statusText = 'Congratulations! Your application has been approved. You can now join our server and start your roleplay journey.';
+                        break;
+                    case 'Rejected':
+                        statusClass = 'status-rejected';
+                        statusIcon = 'fas fa-times-circle';
+                        statusText = 'Your application has been rejected. Please review our rules and guidelines, then try again in 30 days.';
+                        break;
+                }
+                
+                statusResult.innerHTML = `
+                    <div class="status-card ${statusClass} slide-up">
+                        <i class="${statusIcon}"></i>
+                        <h3>Status: ${randomStatus}</h3>
+                        <p>${statusText}</p>
+                    </div>
+                `;
+            }, 2000);
+        }
+
+        // Enhanced form validation with real-time feedback
+        document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = 'var(--error)';
+                    this.style.boxShadow = '0 0 0 4px rgba(239, 68, 68, 0.1)';
+                } else {
+                    this.style.borderColor = '';
+                    this.style.boxShadow = '';
+                }
+            });
+            
+            input.addEventListener('input', function() {
+                if (this.style.borderColor === 'rgb(239, 68, 68)') {
+                    this.style.borderColor = '';
+                    this.style.boxShadow = '';
+                }
+            });
+        });
+
+        // Handle conditional ban details field
+        document.querySelector('select[name="previousBan"]').addEventListener('change', function() {
+            const banDetailsGroup = document.getElementById('banDetailsGroup');
+            if (this.value === 'Yes') {
+                banDetailsGroup.style.display = 'block';
+                banDetailsGroup.querySelector('textarea').setAttribute('required', 'required');
+            } else {
+                banDetailsGroup.style.display = 'none';
+                banDetailsGroup.querySelector('textarea').removeAttribute('required');
+                banDetailsGroup.querySelector('textarea').value = '';
+            }
+        });
+
+        // Enhanced interactive effects
+        document.querySelectorAll('.stat-card').forEach((card, index) => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-20px) scale(1.08)';
+                this.classList.add('glow');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.classList.remove('glow');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `message ${type} slide-up`;
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.zIndex = '1000';
+            notification.style.maxWidth = '350px';
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'info-circle'}" style="margin-right: 15px;"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.rules-section, .stat-card, .status-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize with console message
+        console.log('🚀 AvoX Roleplay Premium Website loaded successfully!');
+        console.log('🎮 Gaming-focused design with SA-MP ENB background');
+        console.log('✨ Premium animations and effects activated');
+        console.log('📱 Fully responsive design enabled');
+    </script>
+</body>
+</html>
