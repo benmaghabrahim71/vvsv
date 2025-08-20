@@ -1455,7 +1455,7 @@
             event.target.classList.add('active');
         }
 
-        // Enhanced form submission with better UX
+        // Enhanced form submission with Discord webhook
         document.getElementById('whitelistForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1467,18 +1467,113 @@
             loading.style.display = 'block';
             loading.classList.add('fade-in');
             
-            // Simulate form submission (replace with actual API call)
-            setTimeout(() => {
+            // Discord webhook URL
+            const webhookUrl = 'https://discord.com/api/webhooks/1407698225938436137/jlR94X5hoC-wnn8LxiQMnvPxGyb6eS_Uz8ONeYFiPknCOPvCXxa46lL2ELLRBnDO2FeR';
+            
+            // Create Discord embed with all form data
+            const embed = {
+                title: "🎮 New AvoX Roleplay Application",
+                description: "A new whitelist application has been submitted!",
+                color: 0x00d4ff,
+                timestamp: new Date().toISOString(),
+                fields: [
+                    {
+                        name: "👤 Personal Information",
+                        value: `**Full Name:** ${data.fullName}\n**SA-MP Username:** ${data.sampUsername}\n**Email:** ${data.email}\n**Age:** ${data.age}\n**Country:** ${data.country}\n**Discord:** ${data.discord || 'Not provided'}`,
+                        inline: false
+                    },
+                    {
+                        name: "🎯 Experience & Motivation",
+                        value: `**Roleplay Experience:** ${data.experience}\n**SA-MP Experience:** ${data.sampExperience}\n**Motivation:** ${data.motivation}`,
+                        inline: false
+                    },
+                    {
+                        name: "🎭 Roleplay Preferences",
+                        value: `**Preferred Character Type:** ${data.characterType}\n**Interesting Scenarios:** ${data.scenarios}\n**Favorite Aspect:** ${data.favoriteAspect}`,
+                        inline: false
+                    },
+                    {
+                        name: "⏰ Availability & Communication",
+                        value: `**Weekly Playtime:** ${data.playtime}\n**Timezone:** ${data.timezone}\n**Microphone:** ${data.microphone}\n**Communication Style:** ${data.communicationStyle}`,
+                        inline: false
+                    },
+                    {
+                        name: "🤝 Community & Contribution",
+                        value: `**How to Contribute:** ${data.contribution}\n**Conflict Resolution:** ${data.conflictResolution}\n**Rule Breaking Response:** ${data.ruleBreaking}`,
+                        inline: false
+                    },
+                    {
+                        name: "📚 Skills & Knowledge",
+                        value: `**RP Commands Familiarity:** ${data.rpCommands}\n**Admin Experience:** ${data.adminExperience}\n**Learning Approach:** ${data.learningApproach}`,
+                        inline: false
+                    },
+                    {
+                        name: "🎨 Character Development",
+                        value: `**Character Development Plans:** ${data.characterDevelopment}\n**Staying In Character:** ${data.stayInCharacter}`,
+                        inline: false
+                    },
+                    {
+                        name: "⚠️ Previous Bans",
+                        value: `**Previous Ban:** ${data.previousBan}\n**Ban Details:** ${data.banDetails || 'N/A'}`,
+                        inline: false
+                    },
+                    {
+                        name: "💭 Additional Information",
+                        value: data.additionalInfo || 'No additional information provided',
+                        inline: false
+                    },
+                    {
+                        name: "✅ Agreements",
+                        value: `**Rules Agreement:** ${data.agreeRules ? '✅' : '❌'}\n**Terms Agreement:** ${data.agreeTerms ? '✅' : '❌'}\n**Age Confirmation:** ${data.agreeAge ? '✅' : '❌'}\n**Privacy Agreement:** ${data.agreePrivacy ? '✅' : '❌'}\n**Updates Agreement:** ${data.agreeUpdates ? '✅' : '❌'}`,
+                        inline: false
+                    }
+                ],
+                footer: {
+                    text: "AvoX Roleplay - Premium SA-MP Server"
+                },
+                thumbnail: {
+                    url: "https://samphosting.com/blog/content/images/2023/04/samp-enb-feature.jpg"
+                }
+            };
+            
+            // Prepare webhook payload
+            const webhookPayload = {
+                username: "AvoX Applications",
+                avatar_url: "https://samphosting.com/blog/content/images/2023/04/samp-enb-feature.jpg",
+                embeds: [embed]
+            };
+            
+            // Send to Discord webhook
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(webhookPayload)
+            })
+            .then(response => {
                 loading.style.display = 'none';
                 
-                // Show success message with enhanced styling
                 const messageDiv = document.getElementById('message');
-                messageDiv.className = 'message success fade-in';
-                messageDiv.innerHTML = `
-                    <i class="fas fa-check-circle" style="font-size: 1.8rem; margin-right: 15px;"></i>
-                    <strong>Application Submitted Successfully!</strong><br>
-                    Your whitelist application has been received and is under review. You will be notified via email within 24-48 hours.
-                `;
+                
+                if (response.ok) {
+                    // Show success message
+                    messageDiv.className = 'message success fade-in';
+                    messageDiv.innerHTML = `
+                        <i class="fas fa-check-circle" style="font-size: 1.8rem; margin-right: 15px;"></i>
+                        <strong>Application Submitted Successfully!</strong><br>
+                        Your whitelist application has been sent to our staff team via Discord. You will be notified via email within 24-48 hours.
+                    `;
+                } else {
+                    // Show error message
+                    messageDiv.className = 'message error fade-in';
+                    messageDiv.innerHTML = `
+                        <i class="fas fa-exclamation-circle" style="font-size: 1.8rem; margin-right: 15px;"></i>
+                        <strong>Submission Error!</strong><br>
+                        There was an issue submitting your application. Please try again or contact support.
+                    `;
+                }
+                
                 messageDiv.style.display = 'block';
                 
                 // Reset form
@@ -1488,7 +1583,26 @@
                 setTimeout(() => {
                     messageDiv.style.display = 'none';
                 }, 8000);
-            }, 3000);
+            })
+            .catch(error => {
+                loading.style.display = 'none';
+                
+                const messageDiv = document.getElementById('message');
+                messageDiv.className = 'message error fade-in';
+                messageDiv.innerHTML = `
+                    <i class="fas fa-exclamation-circle" style="font-size: 1.8rem; margin-right: 15px;"></i>
+                    <strong>Network Error!</strong><br>
+                    Unable to submit application. Please check your internet connection and try again.
+                `;
+                messageDiv.style.display = 'block';
+                
+                // Hide message after 8 seconds
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 8000);
+                
+                console.error('Error submitting application:', error);
+            });
         });
 
         // Enhanced status checking with better feedback
