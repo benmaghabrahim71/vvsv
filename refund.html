@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refund Request - AvoX Hosting</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<style>
+:root {
+  --primary: #0066FF;
+  --primary-light: #1E90FF;
+  --primary-dark: #004ACC;
+  --gray-dark: #1E1E1E;
+  --gray-light: #23252E;
+  --gray-border: #22242D;
+  --text-light: #E0E0E0;
+  --white: #FFFFFF;
+  --shadow: 0 12px 40px rgba(0,0,0,0.4);
+  --transition: all 0.3s ease;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #0e0f15 0%, #151823 100%);
+  color: var(--white);
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.refund-hero {
+  text-align: center;
+  padding: 140px 8% 60px;
+  background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(20,40,90,0.9) 100%);
+  box-shadow: inset 0 -4px 20px rgba(0,0,0,0.5);
+}
+.refund-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 15px;
+}
+.refund-hero p {
+  font-size: 1.15rem;
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Form Card */
+.refund-main {
+  max-width: 700px;
+  margin: 40px auto;
+  background: linear-gradient(120deg, var(--gray-dark) 80%, rgba(0,102,255,0.05));
+  border-radius: 18px;
+  padding: 45px 35px;
+  box-shadow: var(--shadow);
+  animation: fadeInUp 1s both;
+}
+.refund-main h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: var(--primary-light);
+  text-align: center;
+}
+
+/* Form Elements */
+.form-group { margin-bottom: 22px; }
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--primary-light);
+}
+input, select, textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--gray-border);
+  background: var(--gray-light);
+  color: var(--white);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 6px rgba(0,102,255,0.3);
+}
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+/* Notices */
+.notice, .tax {
+  font-size: 0.95rem;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+.notice {
+  color: #ffcc00;
+  background: rgba(255, 204, 0, 0.1);
+  border-left: 4px solid #ffcc00;
+}
+.tax {
+  color: #ff6666;
+  background: rgba(255, 80, 80, 0.1);
+  border-left: 4px solid #ff4444;
+}
+
+/* Button */
+button.submit-btn {
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+}
+button.submit-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px) scale(1.02);
+}
+.success-message {
+  display: none;
+  margin-top: 20px;
+  padding: 14px;
+  background: rgba(0, 200, 100, 0.15);
+  border-left: 4px solid #00cc66;
+  border-radius: 10px;
+  color: #00ff99;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .refund-main {
+    padding: 30px 20px;
+  }
+  .refund-hero {
+    padding: 100px 5% 40px;
+  }
+}
+</style>
+</head>
+<body>
+
+<section class="refund-hero">
+  <h1 data-aos="fade-up"><i class="fas fa-undo"></i> Request a Refund</h1>
+  <p data-aos="fade-up" data-aos-delay="100">Complete the form below to submit your refund request.<br>Refunds are credited as <b>account balance</b> only.</p>
+</section>
+
+<main class="refund-main" data-aos="fade-up">
+  <h2><i class="fas fa-file-invoice-dollar"></i> Refund Form</h2>
+  <form id="refundForm">
+    <div class="form-group">
+      <label for="product">What is your product?</label>
+      <select id="product" name="product" required>
+        <option value="">-- Select a Product --</option>
+        <option value="VPS Hosting">VPS Hosting</option>
+        <option value="RDP Hosting">RDP Hosting</option>
+        <option value="Game Server">Game Server</option>
+        <option value="Dedicated Server">Dedicated Server</option>
+        <option value="DDoS Protection">DDoS Protection</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="serverip">Server IP</label>
+      <input type="text" id="serverip" name="serverip" placeholder="123.45.67.89" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Your Email Address</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+    </div>
+    <div class="form-group">
+      <label for="reason">Why are you requesting a refund?</label>
+      <textarea id="reason" name="reason" placeholder="Explain briefly..." required></textarea>
+    </div>
+    <div class="notice">
+      <i class="fas fa-info-circle"></i> Refunds are issued as <b>credit balance</b> inside your AvoX Hosting account.
+    </div>
+    <div class="tax">
+      <i class="fas fa-dollar-sign"></i> You must pay <b>$3</b> as a tax of the transaction.
+    </div>
+    <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Submit Request</button>
+  </form>
+  <div id="successMessage" class="success-message">
+    ✅ Your refund request has been submitted successfully!
+  </div>
+</main>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 1000, once: true });
+
+const form = document.getElementById('refundForm');
+const successMessage = document.getElementById('successMessage');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const product = document.getElementById('product').value;
+  const serverip = document.getElementById('serverip').value;
+  const email = document.getElementById('email').value;
+  const reason = document.getElementById('reason').value;
+
+  const webhookURL = "https://discord.com/api/webhooks/1416738654864408608/nWWGe88xKJyt9P8wlYMTaQ5e9fSD119PjKpjQfvfDgQ0ch_mf0JyDGTEdlTcELSxMNV7";
+
+  const payload = {
+    embeds: [
+      {
+        title: "📩 New Refund Request Submitted",
+        color: 3447003,
+        fields: [
+          { name: "Product", value: product, inline: true },
+          { name: "Server IP", value: serverip, inline: true },
+          { name: "Email", value: email, inline: true },
+          { name: "Reason", value: reason }
+        ],
+        footer: { text: "AvoX Hosting Refund System" },
+        timestamp: new Date()
+      }
+    ]
+  };
+
+  try {
+    await fetch(webhookURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    form.reset();
+    successMessage.style.display = "block";
+  } catch (err) {
+    alert("❌ Failed to submit refund request. Please try again.");
+    console.error(err);
+  }
+});
+</script>
+</body>
+</html>
